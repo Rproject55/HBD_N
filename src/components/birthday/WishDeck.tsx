@@ -36,6 +36,7 @@ const WishCard = ({
     onSwipeRight,
     rotation,
 }: WishCardProps) => {
+    const { isIndonesian } = useTranslation();
     const x = useMotionValue(0);
     const rotate = useTransform(x, [-300, 0, 300], [-15, rotation, 15]);
     const leftOpacity = useTransform(x, [-150, -40, 0], [1, 0.3, 0]);
@@ -143,13 +144,13 @@ const WishCard = ({
                             className="absolute top-6 left-6 z-20 rounded-full border-2 border-red-400 px-3 py-1 text-red-400 font-bold text-sm"
                             style={{ opacity: leftOpacity }}
                         >
-                            <X size={18} className="inline -mt-0.5" /> SKIP
+                            <X size={18} className="inline -mt-0.5" /> {isIndonesian ? "LEWATI" : "SKIP"}
                         </motion.div>
                         <motion.div
                             className="absolute top-6 right-6 z-20 rounded-full border-2 border-emerald-500 px-3 py-1 text-emerald-500 font-bold text-sm"
                             style={{ opacity: rightOpacity }}
                         >
-                            <Heart size={18} className="inline -mt-0.5 fill-emerald-500" /> PICK
+                            <Heart size={18} className="inline -mt-0.5 fill-emerald-500" /> {isIndonesian ? "PILIH" : "PICK"}
                         </motion.div>
                     </>
                 )}
@@ -167,7 +168,7 @@ const WishCard = ({
                             <div className="text-center w-full">
                                 <Pencil size={32} className="mx-auto mb-4 text-[#a08060] opacity-40" />
                                 <p className="font-handwritten text-xl sm:text-2xl text-[#8B7355] italic">
-                                    Write your own wish...
+                                    {isIndonesian ? "Tulis harapanmu sendiri..." : "Write your own wish..."}
                                 </p>
                             </div>
                         ) : (
@@ -211,7 +212,7 @@ type DeckPhase = "browsing" | "confirming" | "customizing" | "releasing" | "done
 
 export const WishDeck = () => {
     const { config } = useBirthdayStore();
-    const { isHindi, isBengali, isFrench } = useTranslation();
+    const { isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     
     const { name, relationship } = config;
     const primaryColor = config.favoriteColor || "#FF6B6B";
@@ -243,6 +244,8 @@ export const WishDeck = () => {
         ? "आपके लिए ढेरों दुआएं ✨"
         : isFrench
         ? "Vœux pour toi ✨"
+        : isIndonesian
+        ? "Harapan Terbaik Untukmu ✨"
         : "Wishes for You ✨";
 
     const swipeLeft = useCallback(() => {
@@ -424,21 +427,21 @@ export const WishDeck = () => {
                             onClick={handleUseWish}
                             className="px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold text-lg shadow-xl hover:scale-105 transition-transform flex items-center gap-2"
                         >
-                            <Send size={18} /> Use This Wish
+                            <Send size={18} /> {isIndonesian ? "Gunakan Harapan Ini" : "Use This Wish"}
                         </button>
                         <button
                             type="button"
                             onClick={handleCustomize}
                             className="px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-white/80 font-semibold hover:bg-white/10 transition-all flex items-center gap-2"
                         >
-                            <Pencil size={16} /> Customize It
+                            <Pencil size={16} /> {isIndonesian ? "Sesuaikan" : "Customize It"}
                         </button>
                         <button
                             type="button"
                             onClick={() => setPhase("browsing")}
                             className="px-6 py-3 text-white/40 hover:text-white/70 text-sm transition-colors"
                         >
-                            ← Back to deck
+                            ← {isIndonesian ? "Kembali ke tumpukan" : "Back to deck"}
                         </button>
                     </div>
                 </motion.div>
@@ -470,7 +473,7 @@ export const WishDeck = () => {
                                 ref={textareaRef}
                                 value={customText}
                                 onChange={(e) => setCustomText(e.target.value)}
-                                placeholder={`Write a birthday wish for ${name}...`}
+                                placeholder={isIndonesian ? `Tulis harapan ulang tahun untuk ${name}...` : `Write a birthday wish for ${name}...`}
                                 className="w-full h-[240px] sm:h-[280px] bg-transparent resize-none outline-none font-handwritten text-xl sm:text-2xl text-[#2B1B0E] leading-relaxed placeholder:text-[#b8956a]/40"
                                 maxLength={300}
                             />
@@ -487,7 +490,7 @@ export const WishDeck = () => {
                             disabled={!customText.trim()}
                             className="px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold text-lg shadow-xl hover:scale-105 transition-transform flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
                         >
-                            <Send size={18} /> Send to the World
+                            <Send size={18} /> {isIndonesian ? "Kirim ke Dunia" : "Send to the World"}
                         </button>
                         <button
                             type="button"
@@ -500,7 +503,7 @@ export const WishDeck = () => {
                             }}
                             className="px-6 py-3 text-white/40 hover:text-white/70 text-sm transition-colors"
                         >
-                            ← Back
+                            ← {isIndonesian ? "Kembali" : "Back"}
                         </button>
                     </div>
                 </motion.div>
@@ -572,7 +575,7 @@ export const WishDeck = () => {
                         💫
                     </motion.div>
                     <h3 className="text-3xl sm:text-4xl font-display font-black text-white mb-4">
-                        {isBengali ? "শুভকামনা পাঠানো হয়েছে!" : isHindi ? "शुभकामना भेज दी गई!" : isFrench ? "Vœu envoyé !" : "Wish Sent!"}
+                        {isBengali ? "শুভকামনা পাঠানো হয়েছে!" : isHindi ? "शुभकामना भेज दी गई!" : isFrench ? "Vœu envoyé !" : isIndonesian ? "Harapan Terkirim!" : "Wish Sent!"}
                     </h3>
                     <p className="text-white/50 text-lg mb-8 max-w-xs mx-auto">
                         {isBengali
@@ -581,6 +584,8 @@ export const WishDeck = () => {
                             ? "आपका प्यार ब्रह्मांड में फैल गया ✨"
                             : isFrench
                             ? "Ton amour s'est répandu dans l'univers ✨"
+                            : isIndonesian
+                            ? "Cintamu telah dilepaskan ke alam semesta ✨"
                             : "Your love has been released into the universe ✨"}
                     </p>
                     <button
@@ -588,7 +593,7 @@ export const WishDeck = () => {
                         onClick={handleRestart}
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/15 bg-white/5 text-white/60 hover:text-white hover:bg-white/10 transition-all text-sm"
                     >
-                        <RotateCcw size={14} /> Browse Again
+                        <RotateCcw size={14} /> {isIndonesian ? "Lihat Lagi" : "Browse Again"}
                     </button>
                 </motion.div>
             )}

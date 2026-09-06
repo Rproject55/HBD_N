@@ -19,8 +19,8 @@ const CakeCard = ({ cake, onSelect }: {
     onSelect: () => void;
 }) => {
     const isMobile = useIsMobile();
-    const { t, isHindi, isBengali, isFrench } = useTranslation();
-    const displayName = getCakeName(cake, isHindi, isBengali, isFrench);
+    const { t, isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
+    const displayName = getCakeName(cake, isHindi, isBengali, isFrench, isIndonesian);
     return (
         <motion.button 
             whileHover={!isMobile ? { scale: 1.05, y: -10, rotateZ: 2 } : undefined} 
@@ -76,7 +76,7 @@ export const CakeCutting = () => {
     const { fireCinematicCelebration } = useConfetti();
     const { playBoom, playReveal, playPop, playWhoosh } = useSoundManager();
     const { name, relationship, gender, favoriteColor } = useBirthdayStore(state => state.config);
-    const { t, isHindi, isBengali, isFrench } = useTranslation();
+    const { t, isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const primaryColor = favoriteColor || '#FF6B6B';
 
     const quotes = useMemo(() => {
@@ -161,6 +161,32 @@ export const CakeCutting = () => {
             ];
         }
 
+        if (isIndonesian) {
+            if (relationship === 'partner') return [
+                { text: `Untuk ${isMale ? 'Pangeranku' : isFemale ? 'Putriku' : 'Cintaku'}...`, animation: "zoom-in" as const },
+                { text: "Buatlah permohonan untuk masa depan kita yang indah...", animation: "float" as const },
+                { text: "Aku sangat mencintaimu", animation: "pop-out" as const },
+                { text: t('cake.happyBirthdayLove'), animation: "typewriter-burst" as const },
+                { text: t('cake.foreverYours'), animation: "pop-out" as const },
+            ];
+            
+            if (relationship === 'friend') return [
+                { text: `Hei ${name || 'Teman Terbaikku'}!`, animation: "pop-out" as const },
+                { text: t('cake.readyGetOlder'), animation: "zoom-in" as const },
+                { text: t('cake.zeroHangovers'), animation: "stagger-up" as const },
+                { text: t('cake.happyBirthdayBestie'), animation: "typewriter-burst" as const },
+                { text: t('cake.makeSomeNoise'), animation: "float" as const },
+            ];
+            
+            return [
+                { text: `Untuk ${isMale ? 'Raja' : isFemale ? 'Ratu' : 'Manusia Favoritku'}...`, animation: "zoom-in" as const },
+                { text: t('cake.cherishEveryDay'), animation: "pop-out" as const },
+                { text: t('cake.maySmilesBrighten'), animation: "stagger-up" as const },
+                { text: `${t('common.happyBirthday')}!`, animation: "typewriter-burst" as const },
+                { text: t('cake.celebrateYou'), animation: "float" as const },
+            ];
+        }
+
         if (relationship === 'partner') return [
             { text: `My ${isMale ? 'Prince' : isFemale ? 'Princess' : 'Everything'}...`, animation: "zoom-in" as const },
             { text: "Make a wish for our future...", animation: "float" as const },
@@ -184,7 +210,7 @@ export const CakeCutting = () => {
             { text: "Happy Birthday!", animation: "typewriter-burst" as const },
             { text: `Stay blessed always ✨`, animation: "float" as const },
         ];
-    }, [name, relationship, gender, isHindi, isBengali, isFrench, t]);
+    }, [name, relationship, gender, isHindi, isBengali, isFrench, isIndonesian, t]);
 
     const handleSelectCake = useCallback((cake: CakeOption) => {
         if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(30);
@@ -315,7 +341,7 @@ export const CakeCutting = () => {
                                             </div>
                                             <div className="flex flex-col items-center gap-2">
                                                 <h2 className="text-3xl md:text-4xl font-display font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-primary to-white uppercase">
-                                                    {isFrench ? "Préparation de votre gâteau..." : isBengali ? "আপনার কেক তৈরি হচ্ছে..." : isHindi ? "आपका केक तैयार हो रहा है..." : "Baking Your Cake..."}
+                                                    {isFrench ? "Préparation de votre gâteau..." : isBengali ? "আপনার কেক তৈরি হচ্ছে..." : isHindi ? "आपका केक तैयार हो रहा है..." : isIndonesian ? "Membuat Kuenya..." : "Baking Your Cake..."}
                                                 </h2>
                                                 <div className="flex gap-1 mt-2">
                                                     {[1, 2, 3].map((i) => (
@@ -447,7 +473,7 @@ export const CakeCutting = () => {
                                         onClick={() => setPhase("select")} 
                                         className="mt-16 px-10 py-4 rounded-full text-sm font-black uppercase tracking-[0.3em] text-white/40 hover:text-white border border-white/10 hover:bg-white/5 transition-all duration-500"
                                     >
-                                        {isFrench ? "✕ Terminer l'expérience" : isBengali ? "✕ অভিজ্ঞতা সমাপ্ত করুন" : isHindi ? "✕ अनुभव समाप्त करें" : "✕ Finish Experience"}
+                                        {isFrench ? "✕ Terminer l'expérience" : isBengali ? "✕ অভিজ্ঞতা সমাপ্ত করুন" : isHindi ? "✕ अनुभव समाप्त करें" : isIndonesian ? "✕ Selesai" : "✕ Finish Experience"}
                                     </motion.button>
                                 )}
                             </div>

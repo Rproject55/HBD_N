@@ -24,7 +24,7 @@ export const PhotoGallery = () => {
     const [isReducedMotion, setIsReducedMotion] = useState(false);
     const isMobile = useIsMobile();
     const { config, getAnimationPacing } = useBirthdayStore();
-    const { t, isHindi, isBengali, isFrench } = useTranslation();
+    const { t, isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const { relationship } = config;
     const animationPacing = getAnimationPacing();
     const reducedMotion = isReducedMotion || isMobile;
@@ -75,6 +75,18 @@ export const PhotoGallery = () => {
             "परिवार वो जगह है जहाँ ज़िंदगी शुरू होती है ✨",
             "हर एक मुस्कान को सहेज कर रखना 💖",
             "प्यार और खुशियों से भरा सफर 🌟"
+        ]) : isIndonesian ? (relationship === 'partner' ? [
+            "Setiap momen bersamamu adalah hadiah 💖",
+            "Membangun masa depan indah kita ✨",
+            "Tempat favorit di hatiku 🌹"
+        ] : relationship === 'friend' ? [
+            "Momen legendaris bersama bos 🚀",
+            "Membuat kenangan dan lelucon konyol! 😂",
+            "Tetap jadi dirimu yang luar biasa! 🍻"
+        ] : [
+            "Keluarga adalah tempat kehidupan dimulai ✨",
+            "Menghargai setiap senyuman 💖",
+            "Perjalanan yang penuh cinta 🌟"
         ]) : (relationship === 'partner' ? [
             "Every moment with you is a gift 💖",
             "Building our beautiful future ✨",
@@ -92,9 +104,9 @@ export const PhotoGallery = () => {
         return validPhotos.map((src, i) => ({
             src,
             key: `photo-${i}`,
-            caption: config.photoCaptions?.[i] || captions[i % captions.length] || (isFrench ? "Doux souvenir" : isBengali ? "সুন্দর স্মৃতি" : isHindi ? "खूबसूरत याद" : "Beautiful memory"),
+            caption: config.photoCaptions?.[i] || captions[i % captions.length] || (isFrench ? "Doux souvenir" : isBengali ? "সুন্দর স্মৃতি" : isHindi ? "खूबसूरत याद" : isIndonesian ? "Kenangan indah" : "Beautiful memory"),
         }));
-    }, [validPhotos, relationship, config.photoCaptions, isHindi, isBengali, isFrench]);
+    }, [validPhotos, relationship, config.photoCaptions, isHindi, isBengali, isFrench, isIndonesian]);
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -185,11 +197,13 @@ export const PhotoGallery = () => {
                             ? "আমাদের একসাথে কোনো ছবি এখনো যোগ করা হয়নি, তবে সামনে আমরা অনেক সুন্দর স্মৃতি তৈরি করব!"
                             : isHindi
                             ? "हमारे पास अभी साथ में तस्वीरें नहीं हैं, लेकिन आगे हम ढेर सारी खूबसूरत यादें ज़रूर बनाएंगे!"
+                            : isIndonesian
+                            ? "Sayangnya kita belum punya foto bersama di sini, tapi kita pasti akan membuat banyak kenangan indah bersama!"
                             : "Sadly we don't have any picture with us yet, but we definitely will make many memories together!"}
                     </p>
                     <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-white/60">
                         <Sparkles size={14} className="text-primary" />
-                        <span>{isFrench ? "De nouvelles aventures à venir ✨" : isBengali ? "সামনে আসছে দারুণ সব স্মৃতি ✨" : isHindi ? "ढेर सारी नई यादें आने वाली हैं ✨" : "Future adventures await ✨"}</span>
+                        <span>{isFrench ? "De nouvelles aventures à venir ✨" : isBengali ? "সামনে আসছে দারুণ সব স্মৃতি ✨" : isHindi ? "ढेर सारी नई यादें आने वाली हैं ✨" : isIndonesian ? "Petualangan baru menanti ✨" : "Future adventures await ✨"}</span>
                     </div>
                 </motion.div>
             </section>

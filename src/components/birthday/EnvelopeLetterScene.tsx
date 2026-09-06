@@ -25,7 +25,7 @@ export const EnvelopeLetterScene = ({
 
     const { config } = useBirthdayStore();
     const { playPop, playWhoosh, playType } = useSoundManager();
-    const { isHindi, isBengali, isFrench, language } = useTranslation();
+    const { isHindi, isBengali, isFrench, language, isIndonesian } = useTranslation();
     const isMobile = useIsMobile();
     const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -120,6 +120,29 @@ export const EnvelopeLetterScene = ({
                 `परिवार के उस अनमोल इंसान को जन्मदिन की ढेर सारी शुभकामनाएं जिनका प्यार हमारे जीवन की सबसे बड़ी दौलत है। 🌟`,
                 `आपकी दुआएं और अपनापन ही हमारे जीवन की सबसे मजबूत ढाल है।`,
                 `ईश्वर आपको हमेशा स्वस्थ और खुशहाल रखे! 💝`,
+            ];
+        }
+
+        if (isIndonesian) {
+            if (relationship === "partner") {
+                return [
+                    `Kamu adalah sosok yang manis, setia, kekuatanku, dan aku sangat bersyukur memilikimu dalam hidupku. 💖`,
+                    `Kamu membawa begitu banyak kehangatan dan kebahagiaan dalam hidupku. Setiap momen bersamamu sangatlah berharga.`,
+                    `Di hari spesialmu ini, aku berharap semua kebahagiaan, cinta, dan kegembiraan yang kamu pantas dapatkan. Semoga tahun ini membawa kenangan indah yang tak terhitung jumlahnya. ✨`,
+                    `Untuk cinta kita, hari ini, esok, dan selamanya. 🌹`,
+                ];
+            }
+            if (relationship === "friend") {
+                return [
+                    `Untuk sahabat terbaikku dan partner-in-crime paling seru di dunia! 🚀`,
+                    `Terima kasih untuk semua petualangan gila, tawa larut malam, dan selalu mendukungku apa pun yang terjadi.`,
+                    `Semoga tahun ini penuh dengan pencapaian hebat, kebahagiaan tanpa akhir, kue lezat, dan tanpa penyesalan! 🎉🍻`,
+                ];
+            }
+            return [
+                `Untuk seseorang yang kebaikan, kebijaksanaan, dan cinta tanpa syaratnya menerangi seluruh dunia kami. 🌟`,
+                `Terima kasih untuk setiap pengorbanan, setiap pelukan hangat, dan telah melengkapi keluarga kita.`,
+                `Semoga harimu secerah, seindah, dan seluar biasa cinta yang kamu berikan kepada kami semua! 💝`,
             ];
         }
 
@@ -222,7 +245,9 @@ export const EnvelopeLetterScene = ({
                                         ? "এদিকে তোমার জন্য বিশেষ চিঠি 😭💌"
                                         : isHindi
                                             ? "इस बीच एक प्यारा सा सरप्राइज 😭💌"
-                                            : "Meanwhile the surprise 😭💌"}
+                                            : isIndonesian
+                                                ? "Sementara itu, kejutan 😭💌"
+                                                : "Meanwhile the surprise 😭💌"}
                             </h3>
                         </motion.div>
 
@@ -264,7 +289,7 @@ export const EnvelopeLetterScene = ({
                                 className="absolute bottom-3 w-[88%] h-[60%] bg-[#FAF5EA] rounded-xl shadow-inner border border-[#E8DFC8] flex items-center justify-center z-10"
                             >
                                 <p className="font-script text-xs sm:text-sm text-[#8B5A2B] opacity-70">
-                                    {isFrench ? "Pour toi..." : isBengali ? "তোমার জন্য..." : isHindi ? "आपके लिए..." : "For you..."}
+                                    {isFrench ? "Pour toi..." : isBengali ? "তোমার জন্য..." : isHindi ? "आपके लिए..." : isIndonesian ? "Untukmu..." : "For you..."}
                                 </p>
                             </motion.div>
                         </div>
@@ -272,8 +297,8 @@ export const EnvelopeLetterScene = ({
                         <p className="font-display text-xs sm:text-sm tracking-widest uppercase text-white/50 mt-4 flex items-center gap-2">
                             <Sparkles size={14} className="text-primary animate-pulse" />
                             {isOpen
-                                ? (isFrench ? "Ouverture de la lettre..." : isBengali ? "চিঠি খোলা হচ্ছে..." : isHindi ? "पत्र खुल रहा है..." : "Opening letter...")
-                                : (isFrench ? "Appuyez pour ouvrir 💌" : isBengali ? "চিঠি খুলতে স্পর্শ করুন 💌" : isHindi ? "खोलने के लिए टैप करें 💌" : "Tap to open letter 💌")}
+                                ? (isFrench ? "Ouverture de la lettre..." : isBengali ? "চিঠি খোলা হচ্ছে..." : isHindi ? "पत्र खुल रहा है..." : isIndonesian ? "Membuka surat..." : "Opening letter...")
+                                : (isFrench ? "Appuyez pour ouvrir 💌" : isBengali ? "চিঠি খুলতে স্পর্শ করুন 💌" : isHindi ? "खोलने के लिए टैप करें 💌" : isIndonesian ? "Ketuk untuk membuka 💌" : "Tap to open letter 💌")}
                         </p>
                     </motion.div>
                 ) : (
@@ -347,7 +372,9 @@ export const EnvelopeLetterScene = ({
                                             ? "আমার হৃদয়ের এক বিশেষ চিঠি"
                                             : isHindi
                                                 ? "मेरे दिल का एक पैग़ाम"
-                                                : "A Message From My Heart"
+                                                : isIndonesian
+                                                    ? "Pesan Dari Hatiku"
+                                                    : "A Message From My Heart"
                                 )}
                             </h2>
                             <div className="flex justify-center mt-1.5 text-purple-600 text-base sm:text-lg">
@@ -386,7 +413,7 @@ export const EnvelopeLetterScene = ({
                                     onClick={onComplete}
                                     className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#A60F35] via-[#D11A48] to-[#FF2A6D] text-white font-semibold text-sm sm:text-base tracking-wide shadow-[0_10px_25px_rgba(166,15,53,0.4)] hover:shadow-[0_15px_35px_rgba(166,15,53,0.6)] transition-all duration-300 hover:scale-105 active:scale-95 border border-[#FFD166]/40"
                                 >
-                                    <span>{isFrench ? "Continuer la Fête ✨" : isBengali ? "উদযাপনে এগিয়ে যান ✨" : isHindi ? "जश्न जारी रखें ✨" : "Continue Celebration ✨"}</span>
+                                    <span>{isFrench ? "Continuer la Fête ✨" : isBengali ? "উদযাপনে এগিয়ে যান ✨" : isHindi ? "जश्न जारी रखें ✨" : isIndonesian ? "Lanjutkan Perayaan ✨" : "Continue Celebration ✨"}</span>
                                     <ArrowRight size={17} />
                                 </button>
                             </motion.div>

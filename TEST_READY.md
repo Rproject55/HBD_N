@@ -4,9 +4,9 @@
 
 The complete, rigorous test suite for **Birthday Bloom v3.3.0** has been successfully authored, verified, and integrated into the project's Vitest runner.
 
-- **Total Test Files**: 17
-- **Total Tests**: 408
-- **Pass Rate**: 100% (408 passing, 0 failing, 0 flaky)
+- **Total Test Files**: 18
+- **Total Tests**: 419
+- **Pass Rate**: 100% (419 passing, 0 failing, 0 flaky)
 - **Execution Time**: ~2.55s
 - **Static Analysis**: TypeScript (`npm run typecheck`) passed with 0 errors; ESLint (`npm run lint`) passed with 0 warnings/errors; Vite production build (`npm run build`) succeeded in <900ms.
 
@@ -40,7 +40,7 @@ npx vitest run src/test/e2e_requirements_tier3_4.test.ts
 | Feature ID | Domain Description | Test Count | Key Invariants Verified |
 | :--- | :--- | :--- | :--- |
 | **Feature 1** | Emotional Relationship Archetypes & Templates | 5 tests | Partner (king/queen), Friend (camaraderie/legend), Sibling, Colleague/Mentor, Milestone quotes |
-| **Feature 2** | Multilingual Localization Engines (EN, BN, HI, FR) | 5 tests | Deep lexical parity across all scenes, Indic/Latin scripts, parameter interpolation, fallback to English |
+| **Feature 2** | Multilingual Localization Engines (EN, BN, HI, FR, ID) | 5 tests | Deep lexical parity across all scenes, Indic/Latin scripts, parameter interpolation, fallback to English |
 | **Feature 3** | Narrative Flow & Pacing Engine | 5 tests | Store pacing (`slow`, `moderate`, `fast`), mood computation, skip button toggle, grapheme line breaks |
 | **Feature 4** | Sensory & Celebratory Payoff | 5 tests | 4 3D cake flavor configurations, localized cake names (EN/HI/BN/FR), dynamic emoji kits, mobile haptics |
 | **Feature 5** | Dynamic Theming Engine | 5 tests | Hex to HSL/RGB conversion, CSS variables (`--color-primary`, `--bg-gradient`, `--glow-effect`), luminance |
@@ -49,7 +49,7 @@ npx vitest run src/test/e2e_requirements_tier3_4.test.ts
 | **Feature 8** | Quality Gate Hardening & Schema Validation | 5 tests | Schema v3.0.0 validation, closeness level (1..10), legacy record migration, 14 factory constructors |
 | **Feature 9** | Obsidian Docs Synchronization | 5 tests | Synchronization of `docs/ARCH.md`, `docs/FEATURES.md`, `docs/ENV_GUIDE.md` with active configuration |
 | **Feature 10** | 53 Environment Variables Verification | 5 tests | All 53 env vars present in `.env.example`, default aliases, section visibility flags, password variables |
-| **Feature 11** | Root Documentation & LLM Specification | 5 tests | `README.md`, `public/llms.txt`, `package.json` version sync (3.1.0), setup guide instructions |
+| **Feature 11** | Root Documentation & LLM Specification | 5 tests | `README.md`, `public/llms.txt`, `package.json` version sync (3.3.0), setup guide instructions |
 | **Feature 12** | SEO, Canonical & OpenGraph Meta Tags | 5 tests | Canonical link (`https://birthday-bloom.vercel.app/`), OpenGraph tags, Twitter cards, alternate hreflang tags |
 | **Feature 13** | Structured JSON-LD & PWA Webmanifest | 5 tests | Valid JSON-LD `@graph` with WebSite and WebApplication, `site.webmanifest` theme color synchronicity |
 

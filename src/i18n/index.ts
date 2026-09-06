@@ -4,18 +4,23 @@ import { enTranslations } from "./locales/en";
 import { hiTranslations } from "./locales/hi";
 import { bnTranslations } from "./locales/bn";
 import { fr as frTranslations } from "./locales/fr";
+import { idTranslations } from "./locales/id";
 
-export type SupportedLanguage = 'en' | 'hi' | 'bn' | 'fr';
+export type SupportedLanguage = 'en' | 'hi' | 'bn' | 'fr' | 'id';
 
 export const translations: Record<SupportedLanguage, TranslationSchema> = {
     en: enTranslations,
     hi: hiTranslations,
     bn: bnTranslations,
     fr: frTranslations,
+    id: idTranslations,
 };
 
 export const getTranslation = (lang?: string): TranslationSchema => {
     const normalized = (lang || '').toLowerCase().trim();
+    if (normalized === 'id' || normalized === 'indonesian' || normalized === 'bahasa' || normalized === 'indonesia') {
+        return idTranslations;
+    }
     if (normalized === 'fr' || normalized === 'french' || normalized === 'francais' || normalized === 'française' || normalized === 'francaise') {
         return frTranslations;
     }
@@ -64,13 +69,15 @@ export const useTranslation = () => {
     const rawLanguage = useBirthdayStore(state => state.config.language);
     const normalized = (rawLanguage || '').toLowerCase().trim();
     const language: SupportedLanguage =
-        normalized === 'fr' || normalized === 'french' || normalized === 'francais' || normalized === 'française' || normalized === 'francaise'
-            ? 'fr'
-            : normalized === 'bn' || normalized === 'bengali' || normalized === 'bangla'
-                ? 'bn'
-                : normalized === 'hi' || normalized === 'hindi' || normalized === 'in'
-                    ? 'hi'
-                    : 'en';
+        normalized === 'id' || normalized === 'indonesian' || normalized === 'bahasa' || normalized === 'indonesia'
+            ? 'id'
+            : normalized === 'fr' || normalized === 'french' || normalized === 'francais' || normalized === 'française' || normalized === 'francaise'
+                ? 'fr'
+                : normalized === 'bn' || normalized === 'bengali' || normalized === 'bangla'
+                    ? 'bn'
+                    : normalized === 'hi' || normalized === 'hindi' || normalized === 'in'
+                        ? 'hi'
+                        : 'en';
     const currentTranslations = translations[language] || enTranslations;
 
     const t = (keyPath: string, params?: Record<string, string | number>): string => {
@@ -83,6 +90,7 @@ export const useTranslation = () => {
         isHindi: language === 'hi',
         isBengali: language === 'bn',
         isFrench: language === 'fr',
+        isIndonesian: language === 'id',
         translations: currentTranslations,
     };
 };

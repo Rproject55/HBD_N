@@ -5,9 +5,9 @@ aliases: [DOCUMENTATION_INDEX, index]
 
 # Birthday Bloom v3.3 — Documentation Index
 
-[[quick-start|Quick Start]] | [[ENV_GUIDE|Env Customization Guide]] | [[URL-Parameters|URL Parameters]] | [[setup-french|French Guide]] | [[setup-hindi|Hindi Guide]] | [[setup-bengali|Bengali Guide]] | [[architecture-env|Env Architecture]] | [[deployment|Deployment Guide]]
+[[quick-start|Quick Start]] | [[ENV_GUIDE|Env Customization Guide]] | [[URL-Parameters|URL Parameters]] | [[setup-indonesian|Indonesian Guide]] | [[setup-french|French Guide]] | [[setup-hindi|Hindi Guide]] | [[setup-bengali|Bengali Guide]] | [[architecture-env|Env Architecture]] | [[deployment|Deployment Guide]]
 
-**Complete 32-note documentation suite for Birthday Bloom**, an env-first and zero-config cinematic birthday surprise engine built with React 18, TypeScript 5.8, Framer Motion 13, Three.js / React Three Fiber, Tailwind CSS, and Zustand 5.
+**Complete 33-note documentation suite for Birthday Bloom**, an env-first and zero-config cinematic birthday surprise engine built with React 18, TypeScript 5.8, Framer Motion 13, Three.js / React Three Fiber, Tailwind CSS, and Zustand 5.
 
 Repository: [naborajs/birthday-bloom](https://github.com/naborajs/birthday-bloom)
 
@@ -22,6 +22,7 @@ Repository: [naborajs/birthday-bloom](https://github.com/naborajs/birthday-bloom
 | [[Emotional-Psychology-and-UX\|Emotional-Psychology-and-UX.md]] | Human Neurochemistry, Romantic Psychology, Celebratory Pacing & Aesthetics | 12 min | `ux`, `psychology`, `emotion` |
 | [[Celebration-Sound-and-Sensory-Design\|Celebration-Sound-and-Sensory-Design.md]] | Acoustic Neuro-Triggers, Mobile Haptics & Visual Sensory Harmony | 8 min | `audio`, `sound`, `haptics` |
 | [[ENV_GUIDE\|ENV_GUIDE.md]] | Exhaustive reference for all 53 environment variables, aliases & recipes | 15 min | `environment`, `configuration` |
+| [[setup-indonesian\|setup-indonesian.md]] | Multi-Language Localization (Indonesian / Bahasa Indonesia) setup & cultural templates | 5 min | `i18n`, `indonesian`, `localization` |
 | [[setup-french\|setup-french.md]] | Multi-Language Localization (French / Français) setup & European typography | 5 min | `i18n`, `french`, `localization` |
 | [[setup-hindi\|setup-hindi.md]] | Multi-Language Localization (Hindi / हिन्दी) setup, Indic typography & recipes | 5 min | `i18n`, `hindi`, `localization` |
 | [[setup-bengali\|setup-bengali.md]] | Multi-Language Localization (Bengali / বাংলা) setup, Indic typography & recipes | 5 min | `i18n`, `bengali`, `localization` |

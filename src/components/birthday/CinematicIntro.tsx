@@ -42,7 +42,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
     const { fireConfetti, fireStars, fireCinematicCelebration } = useConfetti();
     const { playType, playWhoosh, playReveal, playPop, playBoom } = useSoundManager();
     const { config, getAnimationPacing } = useBirthdayStore();
-    const { t, isHindi, isBengali, isFrench } = useTranslation();
+    const { t, isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const { name, age, relationship, favoriteColor, gender } = config;
 
     const pacing = getAnimationPacing();
@@ -203,6 +203,33 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 "तो आराम से बैठिए और इस *खूबसूरत जश्न का आनंद* लीजिए! ✨"
             ];
         }
+        if (isIndonesian) {
+            if (relationship === 'partner') {
+                return [
+                    "Ada seseorang yang telah menjadi *pusat duniaku*...",
+                    "Seseorang yang membuat setiap detik terasa seperti *adegan film*... ✨",
+                    isMale ? "Pria yang *kekuatan dan kebaikannya* mengubah segalanya bagiku..." : isFemale ? "Wanita yang *keanggunan dan kecantikannya* menerangi setiap ruangan..." : "Jiwa yang membuatku percaya pada *keajaiban cinta* setiap harinya...",
+                    "Aku bisa saja sekadar mengirim pesan *'Aku mencintaimu'*...",
+                    "Namun, pesan sederhana tak akan pernah cukup untuk menampung *seluruh perasaanku padamu* 💖"
+                ];
+            }
+            if (relationship === 'friend') {
+                return [
+                    "Perhatian: Seorang *legenda sejati* naik level hari ini! 🚀",
+                    "Tunggu, apakah ini benar-benar hari ulang tahunmu, atau kalender sedang *bercanda*? 😂",
+                    isMale ? "Untuk sahabat yang bertanggung jawab atas *99% kenangan terbaikku*..." : isFemale ? "Untuk sahabat yang entah bagaimana membuatku tetap *waras meskipun dia sendiri sangat gila*..." : "Untuk manusia paling *luar biasa dan ikonik* di planet ini...",
+                    "Awalnya aku akan memberimu kartu ucapan ulang tahun dewasa yang biasa saja...",
+                    "Lalu aku ingat *siapa kita sebenarnya*! 😎🔥"
+                ];
+            }
+            return [
+                "Hari ini menandai sebuah *momen yang sangat spesial*...",
+                "Karena hari ini, kita merayakan orang paling *luar biasa* di alam semesta kita ✨",
+                "Seseorang yang kehadirannya adalah *hadiah tak ternilai* bagi kita semua...",
+                "Aku ingin membuat sesuatu yang bertahan lama seperti *kenangan berharga* kita...",
+                "Jadi, duduk santai dan *nikmati perayaanmu*! ✨"
+            ];
+        }
         if (relationship === 'partner') {
             return [
                 "There's someone who has been the *center of my world*...",
@@ -228,7 +255,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
             "I wanted to build something that lasts as long as our *treasured memories*...",
             "So, sit back, relax, and *enjoy your celebration*! ✨"
         ];
-    }, [relationship, gender, isHindi, isBengali, isFrench]);
+    }, [relationship, gender, isHindi, isBengali, isFrench, isIndonesian]);
 
     const postChatLines = useMemo(() => {
         if (isFrench) {
@@ -297,6 +324,28 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 "चलिए *जश्न की शुरुआत करते हैं*! ✨",
             ];
         }
+        if (isIndonesian) {
+            if (relationship === 'friend')
+                return [
+                    "Karena kamu bukan sekadar teman biasa...",
+                    "Kamu adalah orang yang selalu bisa kuandalkan untuk *kegilaan & kopi*! ☕️",
+                    "Kamu pantas mendapatkan sesuatu yang sama *epik dan ikoniknya* dengan persahabatan kita...",
+                    "Jadi mari kita *mulai pesta ini*! 🎉",
+                ];
+            if (relationship === 'partner')
+                return [
+                    "Kamu jauh lebih dari sekadar pasangan bagiku...",
+                    "Kamu adalah *tempat berlindungku*, *petualangan terbesarku*, dan *rumahku*.",
+                    "Aku begadang, memastikan setiap pikselnya *sempurna*... sama sepertimu ✨",
+                    "Apakah kamu siap untuk *kejutan besar* ini? ❤️",
+                ];
+            return [
+                "Kamu membawa begitu banyak *kehangatan dan cinta* dalam hidup kami...",
+                "Kamu pantas mendapatkan perayaan yang *seterang senyummu*.",
+                "Kami mencurahkan seluruh hati kami ke dalam ini, hanya untukmu...",
+                "Biarkan *perayaan dimulai*! ✨",
+            ];
+        }
         if (relationship === 'friend')
             return [
                 "Because you're not just any friend...",
@@ -317,7 +366,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
             "We put our whole hearts into this, just for you...",
             "Let the *celebration begin*! ✨",
         ];
-    }, [relationship, isHindi, isBengali, isFrench]);
+    }, [relationship, isHindi, isBengali, isFrench, isIndonesian]);
 
     const finalLines = useMemo(() => {
         if (isFrench) {
@@ -386,6 +435,28 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 "हम आपसे *बहुत प्यार करते हैं*! 💖"
             ];
         }
+        if (isIndonesian) {
+            if (relationship === 'partner')
+                return [
+                    `*${name || 'Cintaku'}* yang tersayang 💖`,
+                    t('intro.hopeYouFeltHeartbeat'),
+                    "Kamu adalah *hari iniku*, *hari esokku*, dan *selamanya* bagiku ✨",
+                    "Selamat Ulang Tahun, *aku sangat mencintaimu*! 💖"
+                ];
+            if (relationship === 'friend')
+                return [
+                    `Selamat Ulang Tahun *${name || 'Legenda'}*! 🚀`,
+                    t('intro.cakeChaosNoRegrets'),
+                    "Aku sangat beruntung memiliki *partner kejahatan* sepertimu 🎉",
+                    "Tetaplah *legendaris*! 😎"
+                ];
+            return [
+                `*${name || 'Orang Hebat'}* yang terkasih ✨`,
+                t('intro.yearOfPureHappiness'),
+                t('intro.kindnessReturnTenfold'),
+                "Kami sangat *mencintaimu*! 💖"
+            ];
+        }
         if (relationship === 'partner')
             return [
                 `My dearest *${name || 'Love'}* 💖`,
@@ -406,7 +477,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
             "May your kindness always come back to you *tenfold* ✨",
             "We *love you* so much! 💖"
         ];
-    }, [name, relationship, isHindi, isBengali, isFrench, t]);
+    }, [name, relationship, isHindi, isBengali, isFrench, isIndonesian, t]);
 
     const effectiveStoryLines = useMemo(() => {
         if (!age) return storyLines;
@@ -416,9 +487,11 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                 ? `আপনার জীবনের *${age}-তম বছর* উদযাপন করতে করতে... ✨`
                 : isHindi
                     ? `आपके जीवन के *${age}वें खूबसूरत साल* का जश्न मनाते हुए... ✨`
-                    : `As you celebrate your *${age}th magical year*... ✨`;
+                    : isIndonesian
+                        ? `Saat kamu merayakan *tahun ke-${age}* yang ajaib ini... ✨`
+                        : `As you celebrate your *${age}th magical year*... ✨`;
         return [...storyLines.slice(0, -1), ageLine, storyLines[storyLines.length - 1]];
-    }, [age, storyLines, isHindi, isBengali, isFrench]);
+    }, [age, storyLines, isHindi, isBengali, isFrench, isIndonesian]);
 
     const primaryColor = favoriteColor || '#FF2A6D';
 
@@ -723,7 +796,7 @@ export const CinematicIntro = ({ onComplete }: CinematicIntroProps) => {
                                     className="font-script text-6xl sm:text-8xl md:text-9xl lg:text-[13rem] font-bold text-gradient-romantic text-glow-rose break-words leading-tight"
                                 >
                                     <KineticText
-                                        text={name || (isFrench ? 'Vous' : isBengali ? 'আপনি' : isHindi ? 'आप' : 'You')}
+                                        text={name || (isFrench ? 'Vous' : isBengali ? 'আপনি' : isHindi ? 'आप' : isIndonesian ? 'Kamu' : 'You')}
                                         animation="zoom-in"
                                         delay={500}
                                     />

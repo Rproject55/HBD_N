@@ -470,7 +470,7 @@ describe("UI Utilities (src/lib/utils.ts)", () => {
       const { useBirthdayStore } = await import("@/features/core/store/useBirthdayStore");
       
       const defaultLang = useBirthdayStore.getState().getLanguage();
-      expect(["en", "hi", "bn", "fr"]).toContain(defaultLang);
+      expect(["en", "hi", "bn", "fr", "id"]).toContain(defaultLang);
     });
 
     it("localizes cake flavors and labels for en, hi, bn, and fr in CakeTypes", async () => {

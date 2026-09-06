@@ -36,7 +36,7 @@ npm.cmd run dev  # PowerShell
 | **Identity** | `VITE_BIRTHDAY_DATE` | — | ISO date string (`YYYY-MM-DD` or `YYYY-MM-DDTHH:mm:ss`) | `null` | Birthday timestamp. Used for passcode generation and age calculations. |
 | **Identity** | `VITE_BIRTHDAY_RELATIONSHIP` | `love`, `bestie`, `mom`, `dad`, `grandpa`, `grandma`, `work`, `teacher` | `partner` \| `friend` \| `family` \| `brother` \| `sister` \| `father` \| `mother` \| `grandfather` \| `grandmother` \| `uncle` \| `aunt` \| `cousin` \| `son` \| `daughter` \| `guardian` \| `sibling` \| `colleague` \| `mentor` \| `custom` | `friend` | Emotional relationship archetype controlling tone, letters, quiz questions, and default pacing. |
 | **Identity** | `VITE_BIRTHDAY_WISHER_NAME` | `VITE_WISHER_NAME` | string | `""` | Name of the person giving the wish (used in letters, cards, and dynamic footer signoff). |
-| **Localization** | `VITE_LANGUAGE` | `VITE_LANG`, `french`, `francais`, `hindi`, `bengali`, `bangla` | `en` \| `bn` \| `hi` \| `fr` | `en` | Multi-language localization engine switch (English, Bengali, Hindi, French). |
+| **Localization** | `VITE_LANGUAGE` | `VITE_LANG`, `indonesian`, `bahasa`, `french`, `francais`, `hindi`, `bengali`, `bangla` | `en` \| `id` \| `bn` \| `hi` \| `fr` | `en` | Multi-language localization engine switch (English, Indonesian, Bengali, Hindi, French). |
 | **Aesthetics** | `VITE_BIRTHDAY_COLOR` | `VITE_THEME_COLOR`, `VITE_FAVORITE_COLOR` | hex string (e.g. `#FF6B6B`) | `#FF6B6B` | Primary theme accent color. Automatically computes HSL CSS variable tokens for `:root`. |
 | **Aesthetics** | `VITE_BIRTHDAY_INTERESTS` | `VITE_FAVORITE_ITEMS` | CSV string / list | `""` | Interests list (`car`, `music`, `art`, `coding`, `gaming`, `nature`, `travel`, `food`, `sport`, `space`). Generates hero badges and quiz questions. |
 | **Aesthetics** | `VITE_FAVORITE_EMOJIS` | `VITE_BIRTHDAY_EMOJIS` | CSV / pipe string | `""` | Custom emoji set for particle trails, interactive click bursts, and floating effects. |
@@ -82,11 +82,14 @@ npm.cmd run dev  # PowerShell
 
 ## Multi-Language Localization (i18n)
 
-Birthday Bloom supports four authentic language engines:
+Birthday Bloom supports five authentic language engines:
 
 ```env
 # English (Default)
 VITE_LANGUAGE=en
+
+# Indonesian / Bahasa Indonesia (Warm expressions & heartfelt cultural letters)
+VITE_LANGUAGE=id
 
 # Bengali / বাংলা (Eastern Nagari typography & cultural letter structures)
 VITE_LANGUAGE=bn

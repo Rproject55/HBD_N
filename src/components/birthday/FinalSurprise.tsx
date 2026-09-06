@@ -43,7 +43,7 @@ const isValidVideoUrl = (url?: string): boolean => {
 
 export const FinalSurprise = () => {
     const { config } = useBirthdayStore();
-    const { isHindi, isBengali, isFrench } = useTranslation();
+    const { isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const isMobile = useIsMobile();
     const allMemories = config.specialMemories || [];
     const memories = allMemories.filter(m => m.text && (isRealImageUrl(m.image) || !m.image));
@@ -61,10 +61,10 @@ export const FinalSurprise = () => {
         {hasRealMemories && (<>
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center mb-20">
             <h2 className="font-display text-5xl md:text-8xl font-black mb-6 bg-gradient-to-r from-primary via-white to-accent bg-clip-text text-transparent">
-              {isFrench ? "Nos Souvenirs Spéciaux 🏞️" : isBengali ? "আমাদের বিশেষ স্মৃতিগুলো 🏞️" : isHindi ? "हमारी खास यादें 🏞️" : "Our Special Memories 🏞️"}
+              {isFrench ? "Nos Souvenirs Spéciaux 🏞️" : isBengali ? "আমাদের বিশেষ স্মৃতিগুলো 🏞️" : isHindi ? "हमारी खास यादें 🏞️" : isIndonesian ? "Kenangan Spesial Kita 🏞️" : "Our Special Memories 🏞️"}
             </h2>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-2xl mx-auto italic">
-              {isFrench ? "« Un voyage de mille lieues commence par un premier pas, mais ce sont les moments partagés qui lui donnent tout son sens. »" : isBengali ? "“হাজার মাইলের যাত্রা একটি পদক্ষেপ দিয়ে শুরু হয়, কিন্তু সুন্দর স্মৃতিগুলোই এই যাত্রাকে সার্থক করে তোলে।”" : isHindi ? "“हजारों मीलों का सफर एक कदम से शुरू होता है, लेकिन वे खूबसूरत लम्हें ही हैं जो इस सफर को यादगार बनाते हैं।”" : "\"A journey of a thousand miles begins with a single step, but it's the moments we share that make it worth traveling.\""}
+              {isFrench ? "« Un voyage de mille lieues commence par un premier pas, mais ce sont les moments partagés qui lui donnent tout son sens. »" : isBengali ? "“হাজার মাইলের যাত্রা একটি পদক্ষেপ দিয়ে শুরু হয়, কিন্তু সুন্দর স্মৃতিগুলোই এই যাত্রাকে সার্থক করে তোলে।”" : isHindi ? "“हजारों मीलों का सफर एक कदम से शुरू होता है, लेकिन वे खूबसूरत लम्हें ही हैं जो इस सफर को यादगार बनाते हैं।”" : isIndonesian ? "\"Perjalanan ribuan mil dimulai dengan satu langkah, namun momen yang kita bagikanlah yang membuatnya berharga.\"" : "\"A journey of a thousand miles begins with a single step, but it's the moments we share that make it worth traveling.\""}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
@@ -87,8 +87,8 @@ export const FinalSurprise = () => {
               <iframe src={finalVideoSrc} loading="lazy" className="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title="Final Surprise Video"/>
             </div>
             <div className="p-10 text-center bg-gradient-to-t from-black/80 to-transparent">
-              <h3 className="font-display text-2xl md:text-4xl font-black mb-4">{isFrench ? "L'Ultime Surprise 🎬" : isBengali ? "শেষ সারপ্রাইজ 🎬" : isHindi ? "आखरी सरप्राइज 🎬" : "The Final Surprise 🎬"}</h3>
-              <p className="text-lg md:text-xl text-white/60 font-light">{isFrench ? "Une petite touche spéciale pour illuminer votre cœur et faire sourire votre âme." : isBengali ? "আপনার মুখে একটি মিষ্টি হাসি ফুটিয়ে তোলার জন্য একটি ছোট্ট উপহার।" : isHindi ? "आपके चेहरे पर एक प्यारी सी मुस्कान लाने के लिए एक छोटा सा तोहफा।" : "A little something extra to make your heart smile."}</p>
+              <h3 className="font-display text-2xl md:text-4xl font-black mb-4">{isFrench ? "L'Ultime Surprise 🎬" : isBengali ? "শেষ সারপ্রাইজ 🎬" : isHindi ? "आखरी सरप्राइज 🎬" : isIndonesian ? "Kejutan Terakhir 🎬" : "The Final Surprise 🎬"}</h3>
+              <p className="text-lg md:text-xl text-white/60 font-light">{isFrench ? "Une petite touche spéciale pour illuminer votre cœur et faire sourire votre âme." : isBengali ? "আপনার মুখে একটি মিষ্টি হাসি ফুটিয়ে তোলার জন্য একটি ছোট্ট উপহার।" : isHindi ? "आपके चेहरे पर एक प्यारी सी मुस्कान लाने के लिए एक छोटा सा तोहफा।" : isIndonesian ? "Sedikit tambahan untuk membuat hatimu tersenyum." : "A little something extra to make your heart smile."}</p>
             </div>
           </motion.div>)}
 
@@ -98,12 +98,12 @@ export const FinalSurprise = () => {
           </motion.div>
           <div className="space-y-6">
             <h2 className="font-display text-4xl md:text-7xl font-black tracking-tight leading-tight">
-              {isFrench ? "J'espère que cette journée a été " : isBengali ? "আশা করি এটি আপনার দিনটিকে " : isHindi ? "उम्मीद है यह आपके दिन को " : "I Hope This Made Your "} <br />
-              <span style={{ color: primaryColor }} className="animate-pulse">{isFrench ? "aussi spéciale et merveilleuse que vous l'êtes" : isBengali ? "আপনার মতোই সুন্দর ও বিশেষ করে তুলবে" : isHindi ? "उतना ही खास बनाएगा जितने आप हैं" : "Day As Special As You Are"}</span>
+              {isFrench ? "J'espère que cette journée a été " : isBengali ? "আশা করি এটি আপনার দিনটিকে " : isHindi ? "उम्मीद है यह आपके दिन को " : isIndonesian ? "Kuharap Ini Membuat " : "I Hope This Made Your "} <br />
+              <span style={{ color: primaryColor }} className="animate-pulse">{isFrench ? "aussi spéciale et merveilleuse que vous l'êtes" : isBengali ? "আপনার মতোই সুন্দর ও বিশেষ করে তুলবে" : isHindi ? "उतना ही खास बनाएगा जितने आप हैं" : isIndonesian ? "Harimu Seistimewa Dirimu" : "Day As Special As You Are"}</span>
             </h2>
             <p className="text-xl md:text-3xl font-light text-foreground/60 max-w-3xl mx-auto leading-relaxed">
-              {isFrench ? "Chaque pixel, chaque animation et chaque mot a \u00E9t\u00E9 con\u00E7u avec tout notre amour." : isBengali ? "\u09AA\u09CD\u09B0\u09A4\u09BF\u099F\u09BF \u09AA\u09BF\u0995\u09CD\u09B8\u09C7\u09B2, \u09AA\u09CD\u09B0\u09A4\u09BF\u099F\u09BF \u0985\u09CD\u09AF\u09BE\u09A8\u09BF\u09AE\u09C7\u09B6\u09A8 \u098F\u09AC\u0982 \u09AA\u09CD\u09B0\u09A4\u09BF\u099F\u09BF \u09B6\u09AC\u09CD\u09A6 \u09B6\u09C1\u09A7\u09C1 \u09A8\u09BF\u0996\u09BE\u09A6 \u09AD\u09BE\u09B2\u09CB\u09AC\u09BE\u09B8\u09BE \u09A6\u09BF\u09AF\u09BC\u09C7 \u09A4\u09C8\u09B0\u09BF\u0964" : isHindi ? "\u09B9\u09B0 \u090F\u0915 \u09AA\u09BF\u0915\u09CD\u09B8\u09C7\u09B2, \u09B9\u09B0 \u090F\u09A8\u09BF\u09AE\u09C7\u09B6\u09A8 \u0914\u09B0 \u09B9\u09B0 \u09B6\u09AC\u09CD\u09A6 \u09B8\u09BF\u09B0\u09CD\u092B \u0914\u09B0 \u09B8\u09BF\u09B0\u09CD\u092B \u09AA\u09CD\u09AF\u09BE\u09B0 \u09B8\u09C7 \u09B8\u099C\u09BE\u09AF\u09BE \u0917\u09AF\u09BE \u09B9\u0948\u0964" : "Every pixel, every animation, and every word was crafted with love."} <br />
-              {isFrench ? `Encore une fois, tr\u00E8s Joyeux Anniversaire, ${config.name}. \u2728` : isBengali ? `\u0986\u09B0\u0993 \u098F\u0995\u09AC\u09BE\u09B0 \u099C\u09A8\u09CD\u09AE\u09A6\u09BF\u09A8\u09C7\u09B0 \u0985\u09AB\u09C1\u09B0\u09A8\u09CD\u09A4 \u09B6\u09C1\u09AD\u09C7\u099A\u09CD\u099B\u09BE, ${config.name}\u0964 \u2728` : isHindi ? `\u090F\u0915 \u09AC\u09BE\u09B0 \u09AB\u09BF\u09B0 \u099C\u09A8\u09CD\u09AE\u09A6\u09BF\u09A8 \u0915\u0940 \u09A2\u09C7\u09B0 \u09B8\u09BE\u09B0\u0940 \u09B6\u09C1\u09AD\u0915\u09BE\u09AE\u09A8\u09BE\u090F\u0902, ${config.name}\u0964 \u2728` : `Happy Birthday once again, ${config.name}. \u2728`}
+              {isFrench ? "Chaque pixel, chaque animation et chaque mot a \u00E9t\u00E9 con\u00E7u avec tout notre amour." : isBengali ? "\u09AA\u09CD\u09B0\u09A4\u09BF\u099F\u09BF \u09AA\u09BF\u0995\u09CD\u09B8\u09C7\u09B2, \u09AA\u09CD\u09B0\u09A4\u09BF\u099F\u09BF \u0985\u09CD\u09AF\u09BE\u09A8\u09BF\u09AE\u09C7\u09B6\u09A8 \u098F\u09AC\u0982 \u09AA\u09CD\u09B0\u09A4\u09BF\u099F\u09BF \u09B6\u09AC\u09CD\u09A6 \u09B6\u09C1\u09A7\u09C1 \u09A8\u09BF\u0996\u09BE\u09A6 \u09AD\u09BE\u09B2\u09CB\u09AC\u09BE\u09B8\u09BE \u09A6\u09BF\u09AF\u09BC\u09C7 \u09A4\u09C8\u09B0\u09BF\u0964" : isHindi ? "\u09B9\u09B0 \u090F\u0915 \u09AA\u09BF\u0915\u09CD\u09B8\u09C7\u09B2, \u09B9\u09B0 \u090F\u09A8\u09BF\u09AE\u09C7\u09B6\u09A8 \u0914\u09B0 \u09B9\u09B0 \u09B6\u09AC\u09CD\u09A6 \u09B8\u09BF\u09B0\u09CD\u092B \u0914\u09B0 \u09B8\u09BF\u09B0\u09CD\u092B \u09AA\u09CD\u09AF\u09BE\u09B0 \u09B8\u09C7 \u09B8\u099C\u09BE\u09AF\u09BE \u0917\u09AF\u09BE \u09B9\u0948\u0964" : isIndonesian ? "Setiap piksel, setiap animasi, dan setiap kata dibuat dengan penuh cinta." : "Every pixel, every animation, and every word was crafted with love."} <br />
+              {isFrench ? `Encore une fois, tr\u00E8s Joyeux Anniversaire, ${config.name}. \u2728` : isBengali ? `\u0986\u09B0\u0993 \u098F\u0995\u09AC\u09BE\u09B0 \u099C\u09A8\u09CD\u09AE\u09A6\u09BF\u09A8\u09C7\u09B0 \u0985\u09AB\u09C1\u09B0\u09A8\u09CD\u09A4 \u09B6\u09C1\u09AD\u09C7\u099A\u09CD\u099B\u09BE, ${config.name}\u0964 \u2728` : isHindi ? `\u090F\u0915 \u09AC\u09BE\u09B0 \u09AB\u09BF\u09B0 \u099C\u09A8\u09CD\u09AE\u09A6\u09BF\u09A8 \u0915\u0940 \u09A2\u09C7\u09B0 \u09B8\u09BE\u09B0\u0940 \u09B6\u09C1\u09AD\u0915\u09BE\u09AE\u09A8\u09BE\u090F\u0902, ${config.name}\u0964 \u2728` : isIndonesian ? `Sekali lagi, Selamat Ulang Tahun, ${config.name}. ✨` : `Happy Birthday once again, ${config.name}. \u2728`}
             </p>
           </div>
           <div className={`flex justify-center gap-8 text-white/20 ${isMobile ? 'opacity-70' : ''}`}>

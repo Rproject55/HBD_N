@@ -49,7 +49,7 @@ export const FakeChatScene = ({ onComplete }: FakeChatSceneProps) => {
 
     const { playType, playWhoosh, playReveal, playPop } = useSoundManager();
     const { config } = useBirthdayStore();
-    const { t, isHindi, isBengali, isFrench } = useTranslation();
+    const { t, isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const { name, relationship, favoriteColor, gender } = config;
 
     const isMale = gender === "male";
@@ -109,6 +109,23 @@ export const FakeChatScene = ({ onComplete }: FakeChatSceneProps) => {
             if (relationship === "mentor" || relationship === "colleague")
                 return "हमारी सबसे बड़ी प्रेरणा के लिए साधारण मैसेज? हमने कुछ खास बनाया है! 🎯✨";
             return "परिवार के इतने अनमोल सदस्य के लिए सिर्फ एक टेक्स्ट काफी नहीं... 💝🌟";
+        }
+        if (isIndonesian) {
+            if (relationship === "partner")
+                return isMale ? "Untuk pria yang memegang hatiku... ❤️" : isFemale ? "Untuk wanita impianku... ❤️" : "Untuk jiwa yang melengkapiku... ❤️";
+            if (relationship === "friend")
+                return "Tunggu, cuma SMS biasa? Itu bukan gaya kita! 😂🚀";
+            if (relationship === "brother" || relationship === "sibling")
+                return "SMS biasa buat saudara terbaik di alam semesta? Nggak mungkin! 🏆";
+            if (relationship === "sister")
+                return "SMS biasa buat saudara perempuanku yang paling manis? Kamu pantas dapat segalanya! 🌸✨";
+            if (relationship === "father")
+                return "Sekadar SMS tidak akan pernah cukup untuk berterima kasih pada pahlawanku... 🌟💪";
+            if (relationship === "mother")
+                return "Pesan sederhana tidak akan pernah bisa mengungkapkan betapa berartinya kehangatanmu bagiku... 💐💛";
+            if (relationship === "mentor" || relationship === "colleague")
+                return "Cuma ucapan ulang tahun biasa? Buat inspirasi terbesar kami? Kami membuat sesuatu yang lebih baik! 🎯✨";
+            return "Pesan singkat tidak akan pernah bisa menangkap seberapa berartinya dirimu bagi keluarga kami... 💝🌟";
         }
 
         // English Default
@@ -627,6 +644,10 @@ export const FakeChatScene = ({ onComplete }: FakeChatSceneProps) => {
                                         ? isMale
                                             ? "क्योंकि मेरे राजा के लिए सिर्फ एक टेक्स्ट काफी नहीं... ✨"
                                             : "क्योंकि मेरी रानी के लिए सिर्फ एक टेक्स्ट काफी नहीं... ✨"
+                                        : isIndonesian
+                                        ? isMale
+                                            ? "Karena Raja sepertimu pantas mendapatkan lebih dari sekadar SMS... ✨"
+                                            : "Karena Ratu sepertimu pantas mendapatkan lebih dari sekadar SMS... ✨"
                                         : isMale
                                         ? "Because a King like you deserves more than just a text message... ✨"
                                         : "Because a Queen like you deserves more than just a text message... ✨"

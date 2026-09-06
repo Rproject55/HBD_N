@@ -72,7 +72,9 @@ export const parseBirthdayUrlParams = (searchString?: string): Partial<BirthdayC
     // Language
     const rawLang = (params.get('lang') || params.get('language') || params.get('locale') || '').toLowerCase().trim();
     if (rawLang) {
-      if (rawLang === 'hi' || rawLang === 'hindi' || rawLang === 'in') {
+      if (rawLang === 'id' || rawLang === 'indonesian' || rawLang === 'bahasa' || rawLang === 'indonesia') {
+        overrides.language = 'id';
+      } else if (rawLang === 'hi' || rawLang === 'hindi' || rawLang === 'in') {
         overrides.language = 'hi';
       } else if (rawLang === 'bn' || rawLang === 'bengali' || rawLang === 'bangla') {
         overrides.language = 'bn';

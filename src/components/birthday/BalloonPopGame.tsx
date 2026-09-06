@@ -21,7 +21,7 @@ export const BalloonPopGame = () => {
     const { config } = useBirthdayStore();
     const { playPop, playReveal, playBoom } = useSoundManager();
     const { fireConfetti } = useConfetti();
-    const { isHindi, isBengali, isFrench } = useTranslation();
+    const { isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const isMobile = useIsMobile();
 
     const relationship = config.relationship || "partner";
@@ -59,6 +59,17 @@ export const BalloonPopGame = () => {
             if (relationship === "mentor" || relationship === "colleague") return ["आप", "हमारी", "सच्ची", "प्रेरणा ! 🎯✨"];
             return ["आप", "हमारा", "सबसे अनमोल", "तोहफा ! 🌟💝"];
         }
+        if (isIndonesian) {
+            if (relationship === "partner") return ["Kamu", "adalah", "cintaku", "selamanya! 💖"];
+            if (relationship === "friend") return ["Kamu", "benar-benar", "super", "hebat! 🚀"];
+            if (relationship === "brother" || relationship === "sibling") return ["Kamu", "adalah", "saudara", "terbaik! 🏆"];
+            if (relationship === "sister") return ["Kamu", "benar-benar", "keajaiban! 🌸✨"];
+            if (relationship === "father") return ["Ayah", "adalah", "pahlawan", "kita! 🌟💪"];
+            if (relationship === "mother") return ["Ibu", "adalah", "jantung", "hati kita! 💐💛"];
+            if (relationship === "grandfather" || relationship === "grandmother") return ["Kalian", "adalah", "kebanggaan", "kami! 🏅🌟"];
+            if (relationship === "mentor" || relationship === "colleague") return ["Anda", "adalah", "sebuah", "inspirasi! 🎯✨"];
+            return ["Kamu", "adalah", "harta", "kami! 🌟💝"];
+        }
 
         // English Default
         if (relationship === "partner") return ["You", "are", "so", "loved! 💖"];
@@ -70,7 +81,7 @@ export const BalloonPopGame = () => {
         if (relationship === "grandfather" || relationship === "grandmother") return ["You", "are", "our", "pride! 🏅🌟"];
         if (relationship === "mentor" || relationship === "colleague") return ["You", "are", "an", "inspiration! 🎯✨"];
         return ["You", "are", "our", "treasure! 🌟💝"];
-    }, [relationship, isHindi, isBengali, isFrench]);
+    }, [relationship, isHindi, isBengali, isFrench, isIndonesian]);
 
     const initialBalloons: BalloonItem[] = useMemo(() => [
         { id: 0, color: "#FF4D6D", lightColor: "#FFAAA6", word: words[0] || "You", isPopped: false, xOffset: -12, delay: 0 },
@@ -169,7 +180,9 @@ export const BalloonPopGame = () => {
                                 ? "বেলুনগুলো ফাটান! 🎈"
                                 : isHindi
                                     ? "गुब्बारे फोड़िए! 🎈"
-                                    : "Pop the balloons! 🎈"}
+                                    : isIndonesian
+                                        ? "Pecahkan balonnya! 🎈"
+                                        : "Pop the balloons! 🎈"}
                     </span>
                 </motion.div>
 
@@ -180,7 +193,9 @@ export const BalloonPopGame = () => {
                             ? "গোপন বার্তাটি দেখতে প্রতিটি বেলুনে স্পর্শ করুন 💌"
                             : isHindi
                                 ? "गुप्त संदेश देखने के लिए हर गुब्बारे को फोड़ें 💌"
-                                : "Tap each balloon to reveal the secret message 💌"}
+                                : isIndonesian
+                                    ? "Ketuk setiap balon untuk melihat pesan rahasia 💌"
+                                    : "Tap each balloon to reveal the secret message 💌"}
                 </p>
             </div>
 
@@ -275,7 +290,9 @@ export const BalloonPopGame = () => {
                                     ? "আবার খেলুন 🎈"
                                     : isHindi
                                         ? "फिर से खेलें 🎈"
-                                        : "Play Again 🎈"}
+                                        : isIndonesian
+                                            ? "Mainkan Lagi 🎈"
+                                            : "Play Again 🎈"}
                         </span>
                     </button>
                 </motion.div>

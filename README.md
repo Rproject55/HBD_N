@@ -77,6 +77,7 @@ Direct docs:
 
 - [Zero-Config URL Parameters Guide](./obsidian-docs/URL-Parameters.md)
 - [Complete env customization guide](./obsidian-docs/ENV_GUIDE.md)
+- [Multi-Language Localization (Indonesian) guide](./obsidian-docs/setup-indonesian.md)
 - [Multi-Language Localization (French) guide](./obsidian-docs/setup-french.md)
 - [Multi-Language Localization (Bengali) guide](./obsidian-docs/setup-bengali.md)
 - [Multi-Language Localization (Hindi) guide](./obsidian-docs/setup-hindi.md)
@@ -129,7 +130,7 @@ This project provides a deeply emotional, personalized birthday celebration land
 - **Instant URL Query Customization & Zero-Code Sharing**: Create and share personalized surprises instantly via URL parameters (e.g. `?name=Sophia&rel=partner&lang=en&sender=Alex`) without modifying code.
 - **1-Click Viral Social Sharing & Referral Modal**: Built-in glassmorphic sharing suite for WhatsApp, X (Twitter), Telegram, Facebook, LinkedIn, and native Web Share API with UTM tracking.
 - **Advanced Dynamic SEO & Generative Engine Optimization (GEO)**: Reactive document head manager (`useDynamicSEO.ts`), full Schema.org structured data (`WebSite`, `WebApplication`, `FAQPage`, `HowTo`, `BreadcrumbList`, `SocialEvent`), multilingual sitemap with `hreflang` alternates, and AI bot discovery rules.
-- **4 Authentic Multi-Language Localization Engines**: Culturally tailored emotional letters, wishes, quotes, and UI copy in **English (`en`)**, **Bengali (`bn`)**, **Hindi (`hi`)**, and **French (`fr`)** with grapheme-safe typography.
+- **5 Authentic Multi-Language Localization Engines**: Culturally tailored emotional letters, wishes, quotes, and UI copy in **English (`en`)**, **Indonesian (`id`)**, **Bengali (`bn`)**, **Hindi (`hi`)**, and **French (`fr`)** with grapheme-safe typography.
 - **3D WebGL Cake Cutting & Candle Blowout**: Real-time Three.js procedural cake with interactive slice separation physics (`@react-spring/three`), candle blowout detection, and reduced-motion support (`VITE_REDUCED_MOTION`).
 - **Interactive Birthday Quiz**: A gamified trivia section that adapts questions dynamically based on the recipient's hobbies, interests, and relationship.
 - **Polaroid Memory Gallery**: A responsive 3D-tilt photo carousel with caption reveals, lightbox support, and an automatic multi-language placeholder card when custom photos are omitted.
@@ -539,7 +540,7 @@ The entire initialization process is controlled securely via the `.env` paradigm
 | `VITE_BIRTHDAY_AGE` | NO | `null` | The age they are turning. |
 | `VITE_BIRTHDAY_GENDER` | NO | `"other"` | `"male"`, `"female"`, or `"other"`. |
 | `VITE_BIRTHDAY_DATE` | NO | `null` | The specific date of the birthday. |
-| `VITE_LANGUAGE` / `VITE_LANG` | NO | `"en"` | Multi-language localization switch: `"en"` (English - default), `"fr"` (French), `"hi"` (Hindi), `"bn"` (Bengali). Normalizes aliases (`fr`/`french`, `hi`/`hindi`, `bn`/`bengali`). |
+| `VITE_LANGUAGE` / `VITE_LANG` | NO | `"en"` | Multi-language localization switch: `"en"` (English - default), `"id"` (Indonesian), `"fr"` (French), `"hi"` (Hindi), `"bn"` (Bengali). Normalizes aliases (`id`/`indonesian`/`bahasa`, `fr`/`french`, `hi`/`hindi`, `bn`/`bengali`). |
 | `VITE_BIRTHDAY_RELATIONSHIP` | NO | `"partner"` | Relationship template: `"partner"`, `"friend"`, `"brother"`, `"sister"`, `"father"`, `"mother"`, `"grandfather"`, `"grandmother"`, `"uncle"`, `"aunt"`, `"cousin"`, `"son"`, `"daughter"`, `"guardian"`, `"colleague"`, `"mentor"`, `"family"`. Fundamentally tailors mood, storytelling text, emotional letters, and emoji effects! |
 | `VITE_BIRTHDAY_WISHER_NAME` | NO | `""` | The birthday wish sender's name, shown in the emotional letter and in the footer. |
 | `VITE_BIRTHDAY_COLOR` / `VITE_FAVORITE_COLOR` | NO | `"#FF6B6B"` | A hex code defining the dynamic global theme, neon glows, and gradient backgrounds. |
@@ -709,14 +710,15 @@ graph TD
 
 ## 🌍 Multi-Language Localization & Setup
 
-Birthday Bloom natively supports **English (default)**, **French (Français)**, **Hindi (हिन्दी)**, and **Bengali (বাংলা)** with cultural nuance, emotional warmth, and authentic localized templates.
+Birthday Bloom natively supports **English (default)**, **Indonesian (Bahasa Indonesia)**, **French (Français)**, **Hindi (हिन्दी)**, and **Bengali (বাংলা)** with cultural nuance, emotional warmth, and authentic localized templates.
 
 - 🇬🇧 [English Quick Start Guide](./obsidian-docs/quick-start.md) — 5-minute setup with zero code changes.
+- 🇮🇩 [Panduan Konfigurasi Bahasa Indonesia (Indonesian Setup Guide)](./obsidian-docs/setup-indonesian.md) — Indonesian emotional letters, quotes, cake names, and cultural templates.
 - 🇫🇷 [Guide de Configuration en Français (French Setup Guide)](./obsidian-docs/setup-french.md) — French emotional letters, quotes, cake names, and tone nuances.
 - 🇮🇳 [हिंदी सेटअप गाइड (Hindi Setup Guide)](./obsidian-docs/setup-hindi.md) — Devanagari typography, Hindi emotional letters, and tone nuances.
 - 🇧🇩 [বাংলা সেটআপ গাইড (Bengali Setup Guide)](./obsidian-docs/setup-bengali.md) — Eastern Nagari typography, Bengali emotional letters, and tone nuances.
 
-To switch languages, set `VITE_LANGUAGE=fr` (French), `VITE_LANGUAGE=hi` (Hindi), or `VITE_LANGUAGE=bn` (Bengali) in your `.env.local` or hosting provider environment settings.
+To switch languages, set `VITE_LANGUAGE=id` (Indonesian), `VITE_LANGUAGE=fr` (French), `VITE_LANGUAGE=hi` (Hindi), or `VITE_LANGUAGE=bn` (Bengali) in your `.env.local` or hosting provider environment settings.
 
 ---
 

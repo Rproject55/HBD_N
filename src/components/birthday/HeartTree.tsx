@@ -6,6 +6,7 @@ import { SPECIAL_QUOTES } from "@/config/templates";
 import { HINDI_SPECIAL_QUOTES } from "@/config/hindiTemplates";
 import { BENGALI_SPECIAL_QUOTES } from "@/config/bengaliTemplates";
 import { FRENCH_SPECIAL_QUOTES } from "@/config/frenchTemplates";
+import { INDONESIAN_SPECIAL_QUOTES, INDONESIAN_HEART_MESSAGES } from "@/config/indonesianTemplates";
 import { useTranslation } from "@/i18n";
 
 interface HeartTreeProps { delay?: number; }
@@ -124,11 +125,24 @@ export const HeartTree = ({ delay = 0 }: HeartTreeProps) => {
     const { config } = useBirthdayStore();
     const { relationship, gender, photos = [] } = config;
     const validPhotos = useMemo(() => photos.filter(p => isRealImageUrl(p)), [photos]);
-    const { isHindi, isBengali, isFrench } = useTranslation();
+    const { isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const primaryColor = config.favoriteColor || 'hsl(330, 90%, 75%)';
     const { playPop } = useSoundManager();
 
     const quotesPool = useMemo(() => {
+        if (isIndonesian) {
+            if (relationship === 'partner')
+                return INDONESIAN_SPECIAL_QUOTES.partner[gender as 'male' | 'female'] || INDONESIAN_SPECIAL_QUOTES.family;
+            if (relationship === 'friend')
+                return (gender === 'male' ? INDONESIAN_SPECIAL_QUOTES.friend.legend : INDONESIAN_SPECIAL_QUOTES.friend.friendly) || INDONESIAN_SPECIAL_QUOTES.family;
+            if (relationship === 'brother' || relationship === 'sibling') return INDONESIAN_SPECIAL_QUOTES.brother || INDONESIAN_SPECIAL_QUOTES.family;
+            if (relationship === 'sister') return INDONESIAN_SPECIAL_QUOTES.sister || INDONESIAN_SPECIAL_QUOTES.family;
+            if (relationship === 'father') return INDONESIAN_SPECIAL_QUOTES.father || INDONESIAN_SPECIAL_QUOTES.family;
+            if (relationship === 'mother') return INDONESIAN_SPECIAL_QUOTES.mother || INDONESIAN_SPECIAL_QUOTES.family;
+            if (relationship === 'colleague') return INDONESIAN_SPECIAL_QUOTES.colleague || INDONESIAN_SPECIAL_QUOTES.family;
+            if (relationship === 'mentor') return INDONESIAN_SPECIAL_QUOTES.mentor || INDONESIAN_SPECIAL_QUOTES.family;
+            return INDONESIAN_SPECIAL_QUOTES.family;
+        }
         if (isFrench) {
             if (relationship === 'partner')
                 return FRENCH_SPECIAL_QUOTES.partner[gender as 'male' | 'female'] || FRENCH_SPECIAL_QUOTES.family;
@@ -179,7 +193,7 @@ export const HeartTree = ({ delay = 0 }: HeartTreeProps) => {
         if (relationship === 'colleague') return SPECIAL_QUOTES.colleague || SPECIAL_QUOTES.family;
         if (relationship === 'mentor') return SPECIAL_QUOTES.mentor || SPECIAL_QUOTES.family;
         return SPECIAL_QUOTES.family;
-    }, [relationship, gender, isHindi, isBengali, isFrench]);
+    }, [relationship, gender, isHindi, isBengali, isFrench, isIndonesian]);
     useEffect(() => {
         const timers = [
             setTimeout(() => setStage(1), delay),
@@ -216,7 +230,7 @@ export const HeartTree = ({ delay = 0 }: HeartTreeProps) => {
     const clickHeart = (e: React.MouseEvent<SVGGElement>, i: number) => {
         e.stopPropagation();
         if (stage < 3) return;
-        const messages = isFrench ? FRENCH_HEART_MESSAGES : isBengali ? BENGALI_HEART_MESSAGES : isHindi ? HINDI_HEART_MESSAGES : HEART_MESSAGES;
+        const messages = isIndonesian ? INDONESIAN_HEART_MESSAGES : isFrench ? FRENCH_HEART_MESSAGES : isBengali ? BENGALI_HEART_MESSAGES : isHindi ? HINDI_HEART_MESSAGES : HEART_MESSAGES;
         setActiveMsg(messages[i] ?? quotesPool[i % quotesPool.length]);
         playPop();
         setTimeout(() => setActiveMsg(null), 5000);

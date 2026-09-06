@@ -39,15 +39,15 @@ Birthday Bloom is a modern, deeply emotional, high-performance birthday celebrat
 | M3 | Documentation & Knowledge Base Overhaul | Complete sync of 31 obsidian docs, ENV_GUIDE.md, .env.example, README.md, CHANGELOG.md, llm.txt | None | DONE |
 | M4 | SEO, OpenGraph & Social Sharing Optimization | index.html canonical, og:locale:alternate, Twitter metadata, JSON-LD schemas, site.webmanifest theme sync | None | DONE |
 | E2E | E2E Testing Track | Tier 1-4 opaque-box test suite, automated test runner, publish TEST_READY.md | None | DONE |
-| Final | 100% E2E Pass & Adversarial Hardening | Pass 100% E2E test suite (319/319 tests), Tier 5 Challenger stress testing, and Forensic Integrity Audit | M1, M2, M3, M4, E2E | DONE |
+| Final | 100% E2E Pass & Adversarial Hardening | Pass 100% E2E test suite (419/419 tests), Tier 5 Challenger stress testing, and Forensic Integrity Audit | M1, M2, M3, M4, E2E | DONE |
 | M5 | Advanced SEO & Viral Reach Upgrade | Dynamic SEO manager, URL query param parser, viral sharing modal, FAQPage/HowTo schemas, multilingual hreflang sitemap, AI bot rules | M1-M4 | DONE |
 
 ## Code Layout
 - `src/features/core/seo/`: `useDynamicSEO.ts` (Reactive head and schema metadata)
 - `src/features/core/store/`: `useBirthdayStore.ts`, `urlParams.ts` (Central state & query param engine)
-- `src/config/`: `templates.ts`, `bengaliTemplates.ts`, `hindiTemplates.ts`, `frenchTemplates.ts`, `birthday.ts`, `themes.ts`
+- `src/config/`: `templates.ts`, `bengaliTemplates.ts`, `hindiTemplates.ts`, `frenchTemplates.ts`, `indonesianTemplates.ts`, `birthday.ts`, `themes.ts`
 - `src/components/birthday/`: Active visual, narrative, and interactive celebration components (30 active components including `ShareCelebrationModal.tsx`)
-- `src/i18n/locales/`: `en.ts`, `bn.ts`, `hi.ts`, `fr.ts`
+- `src/i18n/locales/`: `en.ts`, `bn.ts`, `hi.ts`, `fr.ts`, `id.ts`
 - `obsidian-docs/`: 31 markdown technical, architectural, and user guides
 - `public/`: Assets, audio, favicon, `site.webmanifest`, `sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`
-- `src/test/`: Unit, integration, stress, SEO, and E2E test suites (17 suites, 408 passing tests)
+- `src/test/`: Unit, integration, stress, SEO, and E2E test suites (18 suites, 419 passing tests)

@@ -49,9 +49,9 @@ describe("Adversarial Stress Suite: Multilingual & State Machine Challenger", ()
   // 1. 4-Language Localization & Complex Conjunct Rendering
   // =========================================================================
   describe("1. Multilingual Locale Resolution & Interpolation Stress (EN, BN, HI, FR)", () => {
-    const allLangs: SupportedLanguage[] = ["en", "bn", "hi", "fr"];
+    const allLangs: SupportedLanguage[] = ["en", "bn", "hi", "fr", "id"];
 
-    it("verifies key parity across all 4 locales for all top-level translation domains", () => {
+    it("verifies key parity across all 5 locales for all top-level translation domains", () => {
       const topLevelKeys = [
         "common",
         "splash",
@@ -90,6 +90,17 @@ describe("Adversarial Stress Suite: Multilingual & State Machine Challenger", ()
     });
 
     it("resolves all language aliases and casing variations without throwing", () => {
+      const indonesianAliases = [
+        "id", "ID", "Id", "indonesian", "INDONESIAN", "Indonesian",
+        "bahasa", "BAHASA", "indonesia", "INDONESIA",
+        "  id  ", " indonesian "
+      ];
+      for (const alias of indonesianAliases) {
+        const t = getTranslation(alias);
+        expect(t.common.happyBirthday).toBe("Selamat Ulang Tahun");
+        expect(t.common.skipIntro).toBe("Lewati Intro ⏭");
+      }
+
       const frenchAliases = [
         "fr", "FR", "Fr", "french", "FRENCH", "French",
         "francais", "FRANCAIS", "française", "FRANÇAISE", "francaise",
@@ -147,8 +158,8 @@ describe("Adversarial Stress Suite: Multilingual & State Machine Challenger", ()
       expect(getTranslationValue("fr", "quiz.scoreSummary", { score: 4, total: 5 })).toBe(
         "Vous avez obtenu 4 / 5 au Quiz d'Anniversaire !"
       );
-      expect(getTranslationValue("fr", "gift.yourCode", { code: "CADEAU-MAGIQUE" })).toBe(
-        "Votre Code : CADEAU-MAGIQUE"
+      expect(getTranslationValue("fr", "gift.yourCode")).toBe(
+        "Votre Code :"
       );
 
       // Bengali
@@ -170,6 +181,18 @@ describe("Adversarial Stress Suite: Multilingual & State Machine Challenger", ()
       );
       expect(getTranslationValue("hi", "common.clickMoreTimes", { count: 4 })).toBe(
         "🎂 पर 4 बार और क्लिक करें!"
+      );
+
+      // Indonesian
+      expect(getTranslationValue("id", "common.dear", { name: "Budi" })).toBe("Teruntuk Budi,");
+      expect(getTranslationValue("id", "quiz.scoreSummary", { score: 5, total: 5, name: "Budi" })).toBe(
+        "Kamu mencetak skor 5/5 di Trivia Budi!"
+      );
+      expect(getTranslationValue("id", "common.clickMoreTimes", { count: 3 })).toBe(
+        "Klik 🎂 3 kali lagi!"
+      );
+      expect(getTranslationValue("id", "gift.yourCode")).toBe(
+        "Kodemu:"
       );
     });
 
@@ -326,7 +349,7 @@ describe("Adversarial Stress Suite: Multilingual & State Machine Challenger", ()
         "family",
       ];
       const genders: GenderType[] = ["male", "female", "other"];
-      const languages: SupportedLanguage[] = ["en", "bn", "hi", "fr"];
+      const languages: SupportedLanguage[] = ["en", "bn", "hi", "fr", "id"];
 
       for (const lang of languages) {
         for (const rel of relationships) {
@@ -340,6 +363,7 @@ describe("Adversarial Stress Suite: Multilingual & State Machine Challenger", ()
             // Verify no bracket placeholders remained
             expect(letter).not.toContain("[Your Name]");
             expect(letter).not.toContain("[Votre Nom]");
+            expect(letter).not.toContain("[Nama Anda]");
             expect(letter).not.toContain("[आपका नाम]");
             expect(letter).not.toContain("[আপনার নাম]");
           }

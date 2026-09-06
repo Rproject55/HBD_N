@@ -17,7 +17,7 @@ export const PasswordUnlock = ({ onUnlock }: PasswordUnlockProps) => {
     const [unlocked, setUnlocked] = useState(false);
     const [localFlash, setLocalFlash] = useState(false);
     const { config } = useBirthdayStore();
-    const { t, isHindi, isBengali, isFrench } = useTranslation();
+    const { t, isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const { playType, playWhoosh, playReveal, playBoom } = useSoundManager();
     const { fireStars, fireConfetti } = useConfetti();
     const primaryColor = config.favoriteColor || "#FF6B6B";
@@ -120,6 +120,26 @@ export const PasswordUnlock = ({ onUnlock }: PasswordUnlockProps) => {
                     return "संकेत: जन्म का साल (प्रारूप: YYYY, उदा. 2001) 📅";
                 default:
                     return "संकेत: वह खास तारीख जिसका आज हम जश्न मना रहे हैं! 🎂";
+            }
+        }
+        if (isIndonesian) {
+            switch (format.toUpperCase()) {
+                case 'MMDD':
+                    return "Petunjuk: Tanggal spesial hari ini (Format: MMDD, misal 0424 untuk 24 April) 📅";
+                case 'DDMM':
+                    return "Petunjuk: Tanggal spesial hari ini (Format: DDMM, misal 2404 untuk 24 April) 📅";
+                case 'YYYYMMDD':
+                    return "Petunjuk: Tanggal lahir lengkap dengan tahun (Format: YYYYMMDD, misal 20010424) 📅";
+                case 'YYYY-MM-DD':
+                    return "Petunjuk: Tanggal lahir lengkap (Format: YYYY-MM-DD, misal 2001-04-24) 📅";
+                case 'MM-DD':
+                    return "Petunjuk: Bulan dan hari kelahiran (Format: MM-DD, misal 04-24) 📅";
+                case 'DD-MM':
+                    return "Petunjuk: Hari dan bulan kelahiran (Format: DD-MM, misal 24-04) 📅";
+                case 'YYYY':
+                    return "Petunjuk: Tahun kelahiran (Format: YYYY, misal 2001) 📅";
+                default:
+                    return "Petunjuk: Tanggal spesial yang kita rayakan hari ini! 🎂";
             }
         }
         switch (format.toUpperCase()) {

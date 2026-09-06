@@ -36,7 +36,7 @@ export const MainBirthday = () => {
     const { fireConfetti, fireCannon, fireStars } = useConfetti();
     const { playReveal, playPop, playBoom, setBgVolume } = useSoundManager();
     const { config } = useBirthdayStore();
-    const { t, isHindi, isBengali, isFrench } = useTranslation();
+    const { t, isHindi, isBengali, isFrench, isIndonesian } = useTranslation();
     const { name, age, relationship, favoriteColor, senderName } = config;
     const isMobile = useIsMobile();
     const reduceMotion = useReducedMotion();
@@ -95,10 +95,16 @@ export const MainBirthday = () => {
     }, []);
     useEffect(() => {
         setBgVolume(0.4);
-        setTimeout(() => setVisible(true), 100);
-        setTimeout(() => { playBoom(); }, 600);
-        setTimeout(() => { playReveal(); }, 1200);
-        setTimeout(() => { fireCannon(); playBoom(); }, 2000);
+        const t1 = window.setTimeout(() => setVisible(true), 100);
+        const t2 = window.setTimeout(() => { playBoom(); }, 600);
+        const t3 = window.setTimeout(() => { playReveal(); }, 1200);
+        const t4 = window.setTimeout(() => { fireCannon(); playBoom(); }, 2000);
+        return () => {
+            window.clearTimeout(t1);
+            window.clearTimeout(t2);
+            window.clearTimeout(t3);
+            window.clearTimeout(t4);
+        };
     }, [playReveal, playBoom, setBgVolume, fireCannon]);
     const addEmoji = () => {
         if (typeof navigator !== 'undefined' && navigator.vibrate)
@@ -273,33 +279,33 @@ export const MainBirthday = () => {
             <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.8, opacity: 0 }} transition={{ duration: 0.35 }} className="relative w-full max-w-3xl rounded-[2.5rem] border border-white/10 bg-black/90 p-6 sm:p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] max-h-[calc(100vh-4rem)] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               {giftStage === 'party' ? (<div className="flex flex-col gap-6 text-center min-h-[42vh] justify-center">
                   <div className="text-6xl">🎂🎉✨</div>
-                  <h3 className="text-4xl md:text-6xl font-black text-white">{isBengali ? "পার্টি সারপ্রাইজের আমেজ তৈরি করছে!" : isHindi ? "पार्टी सरप्राइज का माहौल बना रही है!" : "The party is teasing the surprise!"}</h3>
+                  <h3 className="text-4xl md:text-6xl font-black text-white">{isBengali ? "পার্টি সারপ্রাইজের আমেজ তৈরি করছে!" : isHindi ? "पार्टी सरप्राइज का माहौल बना रही है!" : isIndonesian ? "Pesta sedang mempersiapkan kejutan!" : "The party is teasing the surprise!"}</h3>
                   <p className="text-lg md:text-xl text-white/85 max-w-xl mx-auto leading-relaxed">
-                    {isBengali ? "চারপাশে আনন্দের কোলাহল, আলো জ্বলছে এবং উদযাপন শুরু হতে যাচ্ছে। উপহার প্রকাশের আগে পার্টির আনন্দ উপভোগ করুন।" : isHindi ? "भीड़ चीयर कर रही है, लाइट्स चमक रही हैं और जश्न शुरू होने वाला है। उपहार का राज खुलने से पहले पार्टी का मज़ा लें।" : "The crowd is cheering, the lights are flashing, and the celebration message is made to stay visible on every screen. Watch the party tease before the gift reveal arrives."}
+                    {isBengali ? "চারপাশে আনন্দের কোলাহল, আলো জ্বলছে এবং উদযাপন শুরু হতে যাচ্ছে। উপহার প্রকাশের আগে পার্টির আনন্দ উপভোগ করুন।" : isHindi ? "भीड़ चीयर कर रही है, लाइट्स चमक रही हैं और जश्न शुरू होने वाला है। उपहार का राज खुलने से पहले पार्टी का मज़ा लें।" : isIndonesian ? "Kerumunan bersorak, lampu berkelap-kelip, dan perayaan akan segera dimulai. Nikmati pesta sebelum hadiah terungkap." : "The crowd is cheering, the lights are flashing, and the celebration message is made to stay visible on every screen. Watch the party tease before the gift reveal arrives."}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
                     {[
-                    { icon: '🎶', label: isBengali ? 'উচ্চাঙ্গ সংগীত' : isHindi ? 'संगीत तेज' : 'Music builds' },
-                    { icon: '🔥', label: isBengali ? 'উন্মাদ আমেজ' : isHindi ? 'जोश भरपूर' : 'Crowd hype' },
-                    { icon: '✨', label: isBengali ? 'উপহারের রহস্য' : isHindi ? 'तोहफे का राज' : 'Gift tease' }
+                    { icon: '🎶', label: isBengali ? 'উচ্চাঙ্গ সংগীত' : isHindi ? 'संगीत तेज' : isIndonesian ? 'Musik kencang' : 'Music builds' },
+                    { icon: '🔥', label: isBengali ? 'উন্মাদ আমেজ' : isHindi ? 'जोश भरपूर' : isIndonesian ? 'Sorak sorai' : 'Crowd hype' },
+                    { icon: '✨', label: isBengali ? 'উপহারের রহস্য' : isHindi ? 'तोहफे का राज' : isIndonesian ? 'Kejutan hadiah' : 'Gift tease' }
                 ].map((item) => (<div key={item.label} className="rounded-3xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80">
                         <span className="mr-2">{item.icon}</span>{item.label}
                       </div>))}
                   </div>
                   <div className="mx-auto inline-flex rounded-full bg-white/10 px-6 py-4 text-2xl font-semibold text-white shadow-[0_20px_60px_-30px_rgba(255,255,255,0.4)]">
-                    {isBengali ? "ধামাকা মুড অ্যাক্টিভেটেড 💥" : isHindi ? "धमाकेदार मूड एक्टिवेटेड 💥" : "Pataka mood activated."}
+                    {isBengali ? "ধামাকা মুড অ্যাক্টিভেটেড 💥" : isHindi ? "धमाकेदार मूड एक्टिवेटेड 💥" : isIndonesian ? "Mood pataka diaktifkan 💥" : "Pataka mood activated."}
                   </div>
                 </div>) : (<div className="flex flex-col gap-6 text-center">
                   <div className="text-5xl">🎉</div>
-                  <h3 className="text-4xl md:text-6xl font-black text-white">{isBengali ? "সারপ্রাইজ আনলক হয়েছে!" : isHindi ? "सरप्राइज अनलॉक हुआ!" : "Surprise Unlocked!"}</h3>
+                  <h3 className="text-4xl md:text-6xl font-black text-white">{isBengali ? "সারপ্রাইজ আনলক হয়েছে!" : isHindi ? "सरप्राइज अनलॉक हुआ!" : isIndonesian ? "Kejutan Terbuka!" : "Surprise Unlocked!"}</h3>
                   <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto">
-                    {isBengali ? "প্রথমে পার্টি শুরু হলো এবং এখন উপহার এলো। আপনার গোপন কোডটি আপনার সম্পর্ক এবং অনেক ভালোবাসা দিয়ে তৈরি।" : isHindi ? "पहले पार्टी शुरू हुई और अब तोहफा आ गया। आपका गुप्त कोड आपके रिश्ते, आपकी पसंद और ढेर सारे प्यार से बना है।" : "First the party sparkled, then the gift arrived. Your secret code is built from your relationship theme, your favorite interests, and a little playful mischief."}
+                    {isBengali ? "প্রথমে পার্টি শুরু হলো এবং এখন উপহার এলো। আপনার গোপন কোডটি আপনার সম্পর্ক এবং অনেক ভালোবাসা দিয়ে তৈরি।" : isHindi ? "पहले पार्टी शुरू हुई और अब तोहफा आ गया। आपका गुप्त कोड आपके रिश्ते, आपकी पसंद और ढेर सारे प्यार से बना है।" : isIndonesian ? "Pertama pesta dimulai, lalu hadiah tiba. Kode rahasiamu dibuat dari tema hubunganmu, minat kesukaanmu, dan sedikit keisengan." : "First the party sparkled, then the gift arrived. Your secret code is built from your relationship theme, your favorite interests, and a little playful mischief."}
                   </p>
                   <div className="mx-auto inline-flex rounded-full bg-primary/10 px-6 py-4 text-2xl font-semibold text-primary shadow-[0_20px_60px_-30px_rgba(255,255,255,0.4)]">
                     {specialCode}
                   </div>
                   <button type="button" onClick={() => { setGiftStage('closed'); fireConfetti(); }} className="mx-auto rounded-full bg-primary px-10 py-4 text-xl font-black text-black transition-all hover:scale-105">
-                    {isBengali ? "উপহার বন্ধ করুন" : isHindi ? "उपहार बंद करें" : "Close Gift"}
+                    {isBengali ? "উপহার বন্ধ করুন" : isHindi ? "उपहार बंद करें" : isIndonesian ? "Tutup Hadiah" : "Close Gift"}
                   </button>
                 </div>)}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/90 to-transparent"/>
@@ -311,11 +317,11 @@ export const MainBirthday = () => {
       {/* Interactive Celebration Buttons */}
       <section className="relative z-20 flex flex-wrap justify-center gap-4 sm:gap-6 px-4 pb-32">
         {[
-            { label: isBengali ? "🎊 কামান!" : isHindi ? "🎊 तोप!" : "🎊 Cannon!", color: primaryColor, action: fireCannon },
-            { label: isBengali ? "🎈 পার্টি!" : isHindi ? "🎈 पार्टी!" : "🎈 Party!", color: "hsl(45, 100%, 50%)", action: fireConfetti },
-            { label: isBengali ? "💫 ভালোবাসা!" : isHindi ? "💫 प्यार!" : "💫 Love!", color: "hsl(200, 80%, 50%)", action: () => { for (let i = 0; i < 5; i++)
+            { label: isBengali ? "🎊 কামান!" : isHindi ? "🎊 तोप!" : isIndonesian ? "🎊 Meriam!" : "🎊 Cannon!", color: primaryColor, action: fireCannon },
+            { label: isBengali ? "🎈 পার্টি!" : isHindi ? "🎈 पार्टी!" : isIndonesian ? "🎈 Pesta!" : "🎈 Party!", color: "hsl(45, 100%, 50%)", action: fireConfetti },
+            { label: isBengali ? "💫 ভালোবাসা!" : isHindi ? "💫 प्यार!" : isIndonesian ? "💫 Cinta!" : "💫 Love!", color: "hsl(200, 80%, 50%)", action: () => { for (let i = 0; i < 5; i++)
                     setTimeout(addEmoji, i * 200); } },
-            { label: isFrench ? "💌 Partager!" : isBengali ? "💌 শেয়ার!" : isHindi ? "💌 शेयर!" : "💌 Share!", color: "hsl(320, 85%, 55%)", action: () => setShareOpen(true) }
+            { label: isFrench ? "💌 Partager!" : isBengali ? "💌 শেয়ার!" : isHindi ? "💌 शेयर!" : isIndonesian ? "💌 Bagikan!" : "💌 Share!", color: "hsl(320, 85%, 55%)", action: () => setShareOpen(true) }
         ].map((btn, i) => (<motion.button key={i} whileHover={shouldAnimate ? { scale: 1.08, y: -4 } : undefined} whileTap={{ scale: 0.94 }} onClick={() => { btn.action(); addEmoji(); }} className="px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-2xl font-black text-white shadow-2xl transition-all border border-white/20 backdrop-blur-xl" style={{
                 background: `linear-gradient(135deg, ${btn.color}cc, ${btn.color}88)`,
                 boxShadow: `0 15px 40px -10px ${btn.color}50, inset 0 1px 0 rgba(255,255,255,0.4)`
@@ -340,11 +346,11 @@ export const MainBirthday = () => {
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white/90 text-xs sm:text-sm font-semibold tracking-wider transition-all duration-300 shadow-xl hover:scale-105"
           >
             <Share2 size={16} className="text-primary" />
-            <span>{isFrench ? "Partager ou Créer une Surprise ✨" : isBengali ? "সারপ্রাইজ শেয়ার বা নতুন তৈরি করুন ✨" : isHindi ? "सरप्राइज शेयर करें या नया बनाएं ✨" : "Share Surprise or Create Yours ✨"}</span>
+            <span>{isFrench ? "Partager ou Créer une Surprise ✨" : isBengali ? "সারপ্রাইজ শেয়ার বা নতুন তৈরি করুন ✨" : isHindi ? "सरप्राइज शेयर करें या नया बनाएं ✨" : isIndonesian ? "Bagikan atau Buat Kejutanmu ✨" : "Share Surprise or Create Yours ✨"}</span>
           </button>
         </div>
         <p className="text-white/30 text-sm tracking-[0.15em]">
-          {isFrench ? "Avec amour de" : isBengali ? "ভালোবাসায়" : isHindi ? "प्यार से" : "With love from"}{' '}
+          {isFrench ? "Avec amour de" : isBengali ? "ভালোবাসায়" : isHindi ? "प्यार से" : isIndonesian ? "Dengan cinta dari" : "With love from"}{' '}
           <span className="text-white/50 font-semibold">{senderName || 'Someone Special'}</span>
         </p>
         <p className="mt-2 text-white/10 text-[10px] tracking-[0.3em] uppercase">

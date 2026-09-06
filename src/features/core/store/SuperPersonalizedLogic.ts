@@ -2,6 +2,7 @@ import { EMOTIONAL_LETTERS } from '@/config/templates';
 import { HINDI_EMOTIONAL_LETTERS, HINDI_BIG_WISHES } from '@/config/hindiTemplates';
 import { BENGALI_EMOTIONAL_LETTERS, BENGALI_BIG_WISHES } from '@/config/bengaliTemplates';
 import { FRENCH_EMOTIONAL_LETTERS, FRENCH_BIG_WISHES } from '@/config/frenchTemplates';
+import { INDONESIAN_EMOTIONAL_LETTERS, INDONESIAN_BIG_WISHES } from '@/config/indonesianTemplates';
 import { RelationshipType, GenderType } from './useBirthdayStore';
 
 export const getHighlySpecificLetter = (
@@ -14,13 +15,54 @@ export const getHighlySpecificLetter = (
 ) => {
     const isFemale = gender === 'female';
     const isMale = gender === 'male';
+    const isIndonesian = language === 'id' || language === 'indonesian' || language === 'bahasa' || language === 'indonesia';
     const isFrench = language === 'fr' || language === 'french' || language === 'francais' || language === 'française' || language === 'francaise';
     const isHindi = language === 'hi' || language === 'hindi' || language === 'in';
     const isBengali = language === 'bn' || language === 'bengali' || language === 'bangla';
 
     let letter = '';
 
-    if (isFrench) {
+    if (isIndonesian) {
+        if (relationship === 'partner') {
+            letter = isFemale ? INDONESIAN_EMOTIONAL_LETTERS.partner.female(name) : INDONESIAN_EMOTIONAL_LETTERS.partner.male(name);
+        } else if (relationship === 'friend') {
+            if (isFemale) letter = INDONESIAN_EMOTIONAL_LETTERS.friend.friendly(name);
+            else if (isMale) letter = INDONESIAN_EMOTIONAL_LETTERS.friend.legend(name);
+            else letter = INDONESIAN_EMOTIONAL_LETTERS.friend.romantic(name);
+        } else if (relationship === 'sibling') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.sibling(name);
+        } else if (relationship === 'brother') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.brother(name);
+        } else if (relationship === 'sister') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.sister(name);
+        } else if (relationship === 'father') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.father(name);
+        } else if (relationship === 'mother') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.mother(name);
+        } else if (relationship === 'grandfather') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.grandfather(name);
+        } else if (relationship === 'grandmother') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.grandmother(name);
+        } else if (relationship === 'uncle') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.uncle(name);
+        } else if (relationship === 'aunt') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.aunt(name);
+        } else if (relationship === 'cousin') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.cousin(name);
+        } else if (relationship === 'son') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.son(name);
+        } else if (relationship === 'daughter') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.daughter(name);
+        } else if (relationship === 'guardian') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.guardian(name);
+        } else if (relationship === 'colleague') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.colleague(name);
+        } else if (relationship === 'mentor') {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.mentor(name);
+        } else {
+            letter = INDONESIAN_EMOTIONAL_LETTERS.family(name);
+        }
+    } else if (isFrench) {
         if (relationship === 'partner') {
             letter = isFemale ? FRENCH_EMOTIONAL_LETTERS.partner.female(name) : FRENCH_EMOTIONAL_LETTERS.partner.male(name);
         } else if (relationship === 'friend') {
@@ -186,6 +228,7 @@ export const getHighlySpecificLetter = (
     return letter
         .replace(/\[Your Name\]/g, cleanSender)
         .replace(/\[Votre Nom\]/g, cleanSender)
+        .replace(/\[Nama Anda\]/g, cleanSender)
         .replace(/\[आपका नाम\]/g, cleanSender)
         .replace(/\[আপনার নাম\]/g, cleanSender)
         .trimEnd();
@@ -198,6 +241,11 @@ export const getBigWishes = (
     interests: string[] = [],
     language: string = 'en'
 ) => {
+    const isIndonesian = language === 'id' || language === 'indonesian' || language === 'bahasa' || language === 'indonesia';
+    if (isIndonesian) {
+        return INDONESIAN_BIG_WISHES(name, relationship, interests);
+    }
+
     const isFrench = language === 'fr' || language === 'french' || language === 'francais' || language === 'française' || language === 'francaise';
     if (isFrench) {
         return FRENCH_BIG_WISHES(name, relationship, interests);

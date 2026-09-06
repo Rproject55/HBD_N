@@ -11,13 +11,11 @@ Happy Birthday, my love. You are my greatest adventure and my home.
 Forever Yours,
 [Your Name]`,
         female: (name: string) => `My Queen, My Muse, My Beautiful ${name},
+Orang bilang kesempurnaan itu tidak nyata, namun setiap kali aku menatapmu, aku menyadari bahwa teori itu salah. Kamu adalah keanggunan di duniaku, cahaya di hidupku, dan wanita yang membuat jantungku berdetak penuh makna. Kekuatanmu menginspirasiku, kecerdasanmu membuatku kagum, dan cintamu... cintamu adalah udara yang kuhirup.
 
-They say perfection doesn't exist, but every time I look at you, I see the flaw in that theory. You are the grace in my world, the light in my life, and the woman who makes my heart beat with purpose. Your strength inspires me, your intelligence humbles me, and your love... your love is the air I breathe.
+Di hari spesial ini, aku ingin kamu tahu bahwa kamu lebih dari sekadar cukup. Kamu luar biasa. Setiap tawa yang kita bagi adalah harta karun, setiap keheningan adalah kenyamanan. Aku berjanji untuk menyayangimu, melindungi hatimu yang indah, dan menghabiskan sisa hariku untuk menunjukkan betapa berartinya dirimu bagiku.
 
-On this special day, I want you to know that you are more than enough. You are extraordinary. Every laugh we share is a treasure, every silence a comfort. I vow to cherish you, to protect your beautiful heart, and to spend the rest of my days showing you how much you truly mean to me.
-
-Happy Birthday, my soulmate. May your light shine brighter than the stars tonight.
-
+Selamat Ulang Tahun, belahan jiwaku. Semoga cahayamu bersinar lebih terang dari bintang-bintang malam ini.
 With All My Soul,
 [Your Name]`
     },
@@ -248,10 +246,9 @@ export const SPECIAL_QUOTES = {
             "Every moment spent with you is a poem, and every tomorrow is a dream come true. ❤️"
         ],
         female: [
-            "To the woman who turned my world into a garden of joy—you are my muse, my love, and my everything.",
-            "Your grace is my inspiration, your love is my anchor. Happy Birthday to my beautiful soulmate.",
-            "Your smile is the secret behind all my joy; you are my yesterday, my today, and all my tomorrows. 🌹"
-        ]
+            "Teruntuk wanita yang mengubah duniaku menjadi taman kebahagiaan—kamu adalah inspirasiku, cintaku, dan segalanya bagiku.",
+            "Keanggunanmu adalah inspirasiku, cintamu adalah jangkarku. Selamat Ulang Tahun untuk belahan jiwaku yang jelita.",
+            "Senyummu adalah rahasia di balik semua kebahagiaanku; kamu adalah hari kemarinku, hari iniku, dan seluruh hari esokku. 🌹"]
     },
     friend: {
         legend: [

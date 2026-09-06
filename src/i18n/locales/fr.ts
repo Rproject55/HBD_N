@@ -93,7 +93,7 @@ export const fr: TranslationSchema = {
     gift: {
         title: "Cadeau d'Anniversaire Débloqué ! 🎁",
         description: "Voici votre code secret de célébration d'anniversaire :",
-        yourCode: "Votre Code : {code}"
+        yourCode: "Votre Code :"
     },
     heartTree: {
         title: "L'ARBRE DES VŒUX DU CŒUR 💖",
