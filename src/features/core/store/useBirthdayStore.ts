@@ -178,7 +178,7 @@ const envPhotos = parseEnvList(import.meta.env.VITE_PHOTOS, [
     import.meta.env.VITE_PHOTO_4,
     import.meta.env.VITE_PHOTO_5,
     import.meta.env.VITE_PHOTO_6,
-].filter(Boolean).join('|')) : ['/foto-1.jpg', '/foto-2.jpg', '/foto-3.jpg'];
+].filter(Boolean).join('|')) : ['/foto-3.jpg'];
 const envPhotoCaptions = parseEnvList(import.meta.env.VITE_PHOTO_CAPTIONS);
 const envVideos = [
     import.meta.env.VITE_VIDEO_1,
