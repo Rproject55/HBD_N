@@ -113,7 +113,7 @@ const parseEnvJson = <T>(value: unknown): T | null => {
         return null;
     }
 };
-const envName = parseEnvString(import.meta.env.VITE_BIRTHDAY_NAME, import.meta.env.VITE_USER_NAME);
+const envName = parseEnvString(import.meta.env.VITE_BIRTHDAY_NAME, import.meta.env.VITE_USER_NAME) || "Ndari";
 const rawRel = parseEnvString(
     import.meta.env.VITE_BIRTHDAY_RELATIONSHIP,
     import.meta.env.VITE_RELATIONSHIP,
@@ -196,15 +196,15 @@ const envSoundEffects = import.meta.env.VITE_SOUND_EFFECTS !== undefined
     : true;
 const rawLanguage = parseEnvString(import.meta.env.VITE_LANGUAGE, import.meta.env.VITE_LANG).toLowerCase();
 const envLanguage: 'en' | 'hi' | 'bn' | 'fr' | 'id' =
-    rawLanguage === 'id' || rawLanguage === 'indonesian' || rawLanguage === 'bahasa' || rawLanguage === 'indonesia'
-        ? 'id'
+    rawLanguage === 'en' || rawLanguage === 'english'
+        ? 'en'
         : rawLanguage === 'hi' || rawLanguage === 'hindi' || rawLanguage === 'in'
             ? 'hi'
             : rawLanguage === 'bn' || rawLanguage === 'bengali' || rawLanguage === 'bangla'
                 ? 'bn'
                 : rawLanguage === 'fr' || rawLanguage === 'french' || rawLanguage === 'francais' || rawLanguage === 'française' || rawLanguage === 'francaise'
                     ? 'fr'
-                    : 'en';
+                    : 'id';
 const envFinalVideo = parseEnvString(import.meta.env.VITE_FINAL_VIDEO_URL);
 const envMemories = import.meta.env.VITE_SPECIAL_MEMORIES
     ? String(import.meta.env.VITE_SPECIAL_MEMORIES).split('|').map((m: string) => {

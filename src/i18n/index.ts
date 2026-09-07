@@ -30,7 +30,7 @@ export const getTranslation = (lang?: string): TranslationSchema => {
     if (normalized === 'hi' || normalized === 'hindi' || normalized === 'in') {
         return hiTranslations;
     }
-    return enTranslations;
+    return idTranslations;
 };
 
 export const interpolate = (text: string, params?: Record<string, string | number>): string => {
