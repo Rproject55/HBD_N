@@ -139,19 +139,19 @@ const envRelationship: RelationshipType =
     rawRel.includes('sibling') ? 'sibling' :
     rawRel.includes('colleague') || rawRel.includes('work') ? 'colleague' :
     rawRel.includes('mentor') || rawRel.includes('teacher') ? 'mentor' :
-    'family';
+    'partner';
 
 const rawGender = parseEnvString(import.meta.env.VITE_BIRTHDAY_GENDER, import.meta.env.VITE_GENDER).toLowerCase();
 const envGender: GenderType =
     rawGender.includes('female') || rawGender.includes('girl') || rawGender.includes('woman') || rawGender.includes('she') || rawGender.includes('her') ? 'female' :
     rawGender.includes('male') || rawGender.includes('boy') || rawGender.includes('man') || rawGender.includes('he') || rawGender.includes('him') ? 'male' :
-    'other';
+    'female';
 
 const envColor = parseEnvString(import.meta.env.VITE_BIRTHDAY_COLOR, import.meta.env.VITE_THEME_COLOR, import.meta.env.VITE_FAVORITE_COLOR) ||
     (envRelationship === 'partner' ? '#FF2A6D' : envRelationship === 'friend' ? '#00D2FF' : '#FF6B6B');
 const envMessage = parseEnvString(import.meta.env.VITE_BIRTHDAY_CUSTOM_MESSAGE, import.meta.env.VITE_CUSTOM_MESSAGE);
-const envSenderName = parseEnvString(import.meta.env.VITE_BIRTHDAY_WISHER_NAME, import.meta.env.VITE_WISHER_NAME);
-const envAge = parseEnvNumber(import.meta.env.VITE_BIRTHDAY_AGE, null);
+const envSenderName = parseEnvString(import.meta.env.VITE_BIRTHDAY_WISHER_NAME, import.meta.env.VITE_WISHER_NAME) || "Mass Mu";
+const envAge = parseEnvNumber(import.meta.env.VITE_BIRTHDAY_AGE, null) || 29;
 let envDate: Date | null = null;
 try {
     if (import.meta.env.VITE_BIRTHDAY_DATE) {
