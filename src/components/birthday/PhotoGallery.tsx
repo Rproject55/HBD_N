@@ -223,12 +223,6 @@ export const PhotoGallery = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"/>
               
               <div className="absolute bottom-0 inset-x-0 p-8 sm:p-16 text-center">
-                <p className="font-display text-3xl sm:text-5xl md:text-7xl font-black text-white italic tracking-tighter drop-shadow-2xl mb-4">
-                  {photos[activeIndex].caption}
-                </p>
-                <span className="text-white/40 text-xs sm:text-sm tracking-[0.3em] uppercase font-bold">
-                  {activeIndex + 1} / {photos.length}
-                </span>
               </div>
 
               
@@ -269,9 +263,6 @@ export const PhotoGallery = () => {
             <motion.div initial={{ scale: 0.7, opacity: 0, rotateX: 20 }} animate={{ scale: 1, opacity: 1, rotateX: 0 }} exit={{ scale: 1.3, opacity: 0, filter: "blur(20px)" }} className="relative max-w-7xl w-full" onClick={(e) => e.stopPropagation()}>
               <img src={photos[lightbox].src} alt={photos[lightbox].caption} className="w-full max-h-[85vh] object-contain rounded-[2.5rem] shadow-[0_100px_200px_-50px_rgba(0,0,0,1)] border border-white/10"/>
               <div className="text-center mt-12">
-                <p className="font-display text-4xl md:text-6xl text-white font-black italic tracking-tighter drop-shadow-2xl">
-                  {photos[lightbox].caption}
-                </p>
               </div>
               <button aria-label="Close enlarged photo view" onClick={() => setLightbox(null)} className="absolute top-4 right-4 md:-top-12 md:-right-12 w-12 h-12 md:w-20 md:h-20 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-2xl border border-white/10 flex items-center justify-center text-white text-xl md:text-3xl transition-all shadow-2xl z-50">
                 ✕
