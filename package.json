@@ -90,5 +90,10 @@
   "overrides": {
     "brace-expansion": "^2.1.4",
     "nanoid": "^3.3.18"
+  },
+  "allowScripts": {
+    "@swc/core@1.16.0": true,
+    "esbuild": true,
+    "fsevents@2.3.3": true
   }
 }
